@@ -1,0 +1,16 @@
+{
+  "name": "painting_store",
+  "version": "1.0.0",
+  "description": "",
+  "main": "database/painting-methods",
+  "scripts": {
+    "test": "test",
+    "start": "node database/customer-manipulation.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1"
+  }
+}
