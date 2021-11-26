@@ -15,7 +15,7 @@ const paintings = await (client.connect()
 .then(result => {
     //console.log(result.rows)
 return result.rows})
-.catch(error => console.log(`oops: ${error}`))
+.catch(error => {console.log(`oops: ${error}`)})
 .finally((result) => {client.end()
 return result}))
 //console.log(paintings)

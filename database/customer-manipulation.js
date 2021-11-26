@@ -53,5 +53,5 @@ finally{
 
 }}
 
-addUser('pug', 'hug')
+
 

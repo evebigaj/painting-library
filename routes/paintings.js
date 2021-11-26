@@ -5,7 +5,11 @@ const {getPaintings, getPaintingById} = require('../database/painting-methods')
 paintings.get('/', (req, res)=>{
     console.log('getting');
     getPaintings()
-    .then(result => {console.log(result);
+    .then(result => {
+        if(!result){
+            res.status(404).send('Resource not found')
+        }
+        console.log(result);
         res.send(result)})
 })
 
