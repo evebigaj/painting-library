@@ -33,24 +33,57 @@ const client = new Client({
 
 //console.log(`The new ID is ${generateId()}`)
 
+const findCustomer = async (username) => {
+   const foundUser = await client.connect()
+    .then(() =>{console.log('connecting')})
+    .then(()=> client.query(`select * from customers where username = '${username}'`))
+    .then((result) => result.rows)
+    .then(resultRows => {console.table(resultRows)
+        //console.log(resultRows[0])
+        return resultRows[0]})
+    .catch(e => {console.log(`oops: ${e}`)
+return e})
+        .finally(result => client.end())
+return foundUser
+}
 
-const createCustomer = async (username, firstName, lastName, password) =>
-client.connect()
-.then(()=> client.query('BEGIN'))
-.then(() => client.query('insert into customers (username, first_name, last_name, password) values($1, $2, $3, $4)', 
-    [username, firstName, lastName, password]))
-.then(()=> client.query('select * from customers'))
-.then(result => console.table(result.rows))
-.then(() => client.query('COMMIT'))
-.catch((e) =>
-{    console.log(`Oops: ${e}`);
-    client.query('ROLLBACK');
-    return e;
-})
-.finally( (result) => {
-    client.end();
-    console.log('ended')
-return result})
+// console.log(findCustomer('chris'))
+
+
+const checkPassword = async (username, password) => 
+    // console.log('checking')
+    findCustomer(username)
+    .then(resultRows =>  {console.log(resultRows)
+        if(resultRows.password === password){
+        console.log(`found the password ${password}`)
+        return true
+    }
+else console.log(`didn't find password; found ${resultRows.password}`)} )
+.catch(e => {console.log(`oops: ${e}`)})
+    .finally(result => {client.end()
+    return result})
+
+
+//checkPassword('chris', 'west')
+
+// const createCustomer = async (username, firstName, lastName, password) =>
+// client.connect()
+// .then(()=> client.query('BEGIN'))
+// .then(() => client.query('insert into customers (username, first_name, last_name, password) values($1, $2, $3, $4)', 
+//     [username, firstName, lastName, password]))
+// .then(()=> client.query('select * from customers'))
+// .then(result => console.table(result.rows))
+// .then(() => client.query('COMMIT'))
+// .catch((e) =>
+// {    console.log(`Oops: ${e}`);
+//     client.query('ROLLBACK');
+//     return e;
+// })
+// .finally( (result) => {
+//     client.end();
+//     console.log('ended')
+// return result})
+
 
 
 // const createCustomer = async (username, firstName, lastName, password) =>
@@ -75,6 +108,6 @@ return result})
 
 //createCustomer('eve', 'eve', 'bigaj', 'test')
 
-module.exports = {createCustomer}
+module.exports = {createCustomer, checkPassword}
 
 
