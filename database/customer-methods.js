@@ -37,7 +37,8 @@ const findCustomer = async (username) => {
    const foundUser = await client.connect()
     .then(() =>{console.log('connecting')})
     .then(()=> client.query(`select * from customers where username = '${username}'`))
-    .then((result) => result.rows)
+    .then((result) => {
+        return result.rows})
     .then(resultRows => {console.table(resultRows)
         //console.log(resultRows[0])
         return resultRows[0]})
@@ -108,6 +109,6 @@ else console.log(`didn't find password; found ${resultRows.password}`)} )
 
 //createCustomer('eve', 'eve', 'bigaj', 'test')
 
-module.exports = {createCustomer, checkPassword}
+module.exports = {checkPassword}
 
 
