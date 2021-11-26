@@ -44,11 +44,13 @@ client.connect()
 .then(() => client.query('COMMIT'))
 .catch((e) =>
 {    console.log(`Oops: ${e}`);
-    client.query('ROLLBACK')
+    client.query('ROLLBACK');
+    return e;
 })
-.finally( () => {
+.finally( (result) => {
     client.end();
-    console.log('ended')})
+    console.log('ended')
+return result})
 
 
 // const createCustomer = async (username, firstName, lastName, password) =>
