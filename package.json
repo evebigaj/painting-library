@@ -5,7 +5,7 @@
   "main": "database/painting-methods",
   "scripts": {
     "test": "test",
-    "start": "node database/customer-manipulation.js"
+    "start": "nodemon server.js"
   },
   "author": "",
   "license": "ISC",
