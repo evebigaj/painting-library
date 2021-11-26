@@ -15,7 +15,10 @@ paintings.get('/', (req, res)=>{
 
 paintings.get('/:id', (req, res) => {
     getPaintingById(req.params.id)
-    .then(result => res.send(result))
-})
+    .then(result => {
+        if(!result){res.status(404).send('Resource not found')         
+}
+res.send(result)
+})})
 
 module.exports = {paintings}
