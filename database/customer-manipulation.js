@@ -38,7 +38,6 @@ const addUser = async (firstName, lastName) =>
 {try{ await client.connect();
     await client.query('BEGIN');
     //below isn't working for some reason
-await client.query(`insert into customers values(5, '${firstName}', '${lastName}')`)
 const result = await client.query('select * from customers');
 console.table(result.rows)
 await client.query('COMMIT')
