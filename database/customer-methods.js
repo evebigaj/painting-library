@@ -59,10 +59,13 @@ const checkPassword = async (username, password) =>
         console.log(`found the password ${password}`)
         return true
     }
-else console.log(`didn't find password; found ${resultRows.password}`)} )
-.catch(e => {console.log(`oops: ${e}`)})
-    .finally(result => {client.end()
-    return result})
+else {console.log(`didn't find password; found ${resultRows.password}`)
+return false}
+} )
+.catch(e => {console.log(`oops: ${e}`)
+return e})
+    .finally(() => client.end()
+    )
 
 
 //checkPassword('chris', 'west')
@@ -109,6 +112,6 @@ else console.log(`didn't find password; found ${resultRows.password}`)} )
 
 //createCustomer('eve', 'eve', 'bigaj', 'test')
 
-module.exports = {checkPassword}
+module.exports = {checkPassword, findCustomer}
 
 
