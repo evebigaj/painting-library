@@ -2,7 +2,7 @@
   "name": "painting_store",
   "version": "1.0.0",
   "description": "",
-  "main": "database/customer-methods",
+  "main": "database/painting-methods",
   "scripts": {
     "test": "test",
     "start": "nodemon server.js"
