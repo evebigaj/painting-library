@@ -2,8 +2,9 @@ const express = require('express')
 const app = express();
 const {paintings} = require('./routes/paintings')
 const {register} = require('./routes/register')
+const cors = require('cors')
 
-
+app.use(cors())
 
 app.use(express.urlencoded({ extended: true }))
 // // parse json
