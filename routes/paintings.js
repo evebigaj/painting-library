@@ -3,6 +3,7 @@ const paintings = new express.Router()
 const {getPaintings, getPaintingById, getPaintingByKey, getPaintingsByKeys} = require('../database/painting-methods')
 
 paintings.get('/', (req, res)=>{
+        // document.head.append('<link rel="stylesheet" type="text/css"   href="public/styles.css">')
         getPaintingsByKeys(req.query, res)
         .then(result => {
         // if(!result){
@@ -19,6 +20,7 @@ paintings.get('/', (req, res)=>{
         <p>${painting.height}"x ${painting.width}"</p>
         $${painting.price}`)}
         )
+        console.log(body)
         res.send(body)})
         .catch(e => {console.log(e)})
         }
