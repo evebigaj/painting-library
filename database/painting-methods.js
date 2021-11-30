@@ -34,7 +34,7 @@ return error})
     return painting
 }
 
-const getPaintingsByKeys = async (object) => {
+const getPaintingsByKeys = async (object, res) => {
     console.log(Object.keys(object))
     let sentence = `select * from paintings where `
     for(key of Object.keys(object)){
@@ -58,6 +58,7 @@ const getPaintingsByKeys = async (object) => {
         return result.rows
     })
     .catch(error => {console.log(`oops: ${error}`)
+    res.status(404)
 return error})
 .finally(()=>{client.end()})
 
