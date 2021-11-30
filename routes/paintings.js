@@ -1,6 +1,6 @@
 const express = require('express');
 const paintings = new express.Router()
-const {getPaintings, getPaintingById, getPaintingByKey} = require('../database/painting-methods')
+const {getPaintings, getPaintingById, getPaintingByKey, getPaintingsByKeys} = require('../database/painting-methods')
 
 paintings.get('/', (req, res)=>{
     console.log('getting');
@@ -16,7 +16,7 @@ paintings.get('/', (req, res)=>{
         //for now, assuming single element query
         //for now, assuming we're searching specifically by medium
         //todo: refactor so there isn't duplicate code
-        getPaintingByKey('medium', req.query.medium)
+        getPaintingsByKeys(req.query)
         .then(result => {
         if(!result){
             res.status(404).send('Resource not found')
@@ -26,6 +26,7 @@ paintings.get('/', (req, res)=>{
         }
         console.log(result);
         res.send(result)})
+        .catch(e => {console.log(e)})
     }
 })
 

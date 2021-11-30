@@ -34,6 +34,39 @@ return error})
     return painting
 }
 
+const getPaintingsByKeys = async (object) => {
+    console.log(Object.keys(object))
+    let sentence = `select * from paintings where `
+    for(key of Object.keys(object)){
+        //console.log(key)
+        let sentenceToConcat = ''
+        if(key == 'maxprice'){
+            sentenceToConcat = `price <= ${object[key]} and `
+        }
+        else{ sentenceToConcat = `${key} = '${object[key]}' and `}
+
+        sentence = sentence.concat(sentenceToConcat)
+    }
+    sentence = sentence.slice(0,-5)
+    console.log(sentence)
+
+    const result = await client.connect()
+    .then(() => console.log('connected'))
+    .then(() => client.query(sentence))
+     .then(result => {
+        //console.table(result.rows)
+        return result.rows
+    })
+    .catch(error => {console.log(`oops: ${error}`)
+return error})
+.finally(()=>{client.end()})
+
+return result 
+    
+}
+
+//getPaintingsByKeys({medium: 'oil'})
+
 const getPaintingByKey = async (key, value) => {
     const result = await client.connect()
     .then(() =>{console.log('connected')})
@@ -53,7 +86,7 @@ return result
 //this is a promise because getPaintings is async
 //console.log(`the result is ${getPaintings()}`)
 
-module.exports = {getPaintings, getPaintingById, getPaintingByKey}
+module.exports = {getPaintings, getPaintingById, getPaintingByKey, getPaintingsByKeys}
 
 
 
