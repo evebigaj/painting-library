@@ -11,9 +11,7 @@ paintings.get('/', (req, res)=>{
         // if(Object.keys(result).length ===0){
         //     res.status(204).send()
         // }
-        console.log(result);
-        console.log(result[0].title)
-        res.setHeader('content-type', 'text/html');
+        //res.setHeader('content-type', 'text/html');
         let body = ''
         result.forEach(painting => {
         body = body.concat(`<h1>${painting.title}</h1>
@@ -21,7 +19,6 @@ paintings.get('/', (req, res)=>{
         <p>${painting.height}"x ${painting.width}"</p>
         $${painting.price}`)}
         )
-        console.log(`the body is ${body}`)
         res.send(body)})
         .catch(e => {console.log(e)})
         }
