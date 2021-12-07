@@ -20,8 +20,8 @@ app.use(express.json())
 app.use('/paintings', paintings)
 app.use('/register', register)
 
-app.get('/', (res, req) => {
-    res.sendFile(path.resolve(__dirname, './public/index.html'))
-})
+// app.get('/', (res, req) => {
+//     res.sendFile(path.resolve(__dirname, './public/index.html'))
+// })
 
 app.listen(3000, () => console.log('listening on port 3000'))
