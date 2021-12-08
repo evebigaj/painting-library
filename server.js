@@ -16,6 +16,7 @@ app.use(express.static('public'))
 app.use(express.json())
 
 app.use('/paintings', express.static('paintings'))
+app.use('/paintings/:id', express.static('particular-painting'))
 app.use('/api/paintings', paintings)
 app.use('/register', register)
 
