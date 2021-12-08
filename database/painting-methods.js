@@ -48,13 +48,13 @@ const getPaintingsByKeys = async (object, res) => {
         sentence = sentence.concat(sentenceToConcat)
     }
     sentence = sentence.slice(0,-5)
-    console.log(sentence)
+    //console.log(sentence)
 
     const result = await client.connect()
     .then(() => console.log('connected'))
     .then(() => client.query(sentence))
      .then(result => {
-        //console.table(result.rows)
+        console.table(result.rows)
         return result.rows
     })
     .catch(error => {console.log(`oops: ${error}`)

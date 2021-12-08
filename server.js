@@ -15,9 +15,8 @@ app.use(express.static('public'))
 // // parse json
 app.use(express.json())
 
-
-
-app.use('/paintings', paintings)
+app.use('/paintings', express.static('paintings'))
+app.use('/api/paintings', paintings)
 app.use('/register', register)
 
 // app.get('/', (res, req) => {
