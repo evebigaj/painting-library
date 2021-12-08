@@ -1,60 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
     <head><link rel="stylesheet" href="./styles.css"> </link> 
-        <script>
-        // reuse painting-methods getpainting instead of going
-        //via fetch and get route 
-        //aim to display the simplest version
-          
+       </head>
+       <body>
+        <article id="main">
+            <section id="form-container">
+                <form>
 
-            
+                </form>
+            </section>
+            <section id="link">
+                <a>See all paintings</a>
+                <img src="/photos/fallWindow.jpg"/>
+            </section>
+        </article>
 
-
-
-
-
-        
-
-        const result = () => {
-            
-            fetch('/paintings')
-            .then(result => result.json())
-            //.then(result => {console.log(result)})
-            //try painting[0], then try to figure out what the type of the result is
-            //if that doesn't work, try to learn about .json() 
-            //and what fetch returns and how to modify it 
-            .then(result => {
-            //next step: learn how to 
-                console.log(result)
-                result.forEach(painting => {
-                    let title = document.createElement('h1');
-                    title.innerHTML = painting.title;
-                    document.getElementById("div").append(title)
-                    let price = document.createElement('p')
-                    price.innerHTML = `Price: ${painting.price}`
-                    document.getElementById("div").append(price)
-                })
-                // let paragraph = document.getElementById("p")
-                // console.log(`The inner HTML is ${paragraph.innerHTML}`)
-                // paragraph.innerHTML = result[0].title
-            //     document.concat(`<h1>${painting.title}</h1>
-            //     <p>medium: ${painting.medium}</p>
-            // <p>${painting.height}"x ${painting.width}"</p>
-            // $${painting.price}`)
-        
-        })
-        // )
-        // console.log(body)})
-    
-    }
-        
-        </script>
-
-    </head>
-    <body>
-        <div id="div"></div>
-        <p id="p">test</p>
-        <button onclick = "result()"></button>
-    </body>
+       </body>
 
 </html>

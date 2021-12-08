@@ -8,7 +8,7 @@ paintings.get('/', (req, res)=>{
         // document.head.append('<link rel="stylesheet" type="text/css"   href="public/styles.css">')
         getPaintingsByKeys(req.query, res)
         .then(result => {
-            //console.log(result)
+            console.log(result)
             res.send(result)
         return result})
     //     .then(result => {
