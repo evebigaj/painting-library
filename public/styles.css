@@ -4,3 +4,9 @@ h1 {
 p {
   color: blue;
 }
+
+img {
+  height: 75vh;
+}
+
+#main{display:flex;}
