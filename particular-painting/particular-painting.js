@@ -24,3 +24,8 @@ fetch(`/api/paintings/${id}`)
     price.innerHTML = `$${painting.price}`
     description.append(price)
 })
+
+const addToCart = async () => {
+   await fetch(`/api/cart/${id}`, {method: 'POST'})
+   .then(() => {console.log(`adding successful`)})
+}

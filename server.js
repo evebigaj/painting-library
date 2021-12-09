@@ -2,6 +2,7 @@ const express = require('express')
 const app = express();
 const {paintings} = require('./routes/paintings')
 const {register} = require('./routes/register')
+const {cart} = require('./routes/cart')
 const path = require('path')
 //const cors = require('cors')
 
@@ -11,13 +12,14 @@ const path = require('path')
 
 app.use(express.static('public'))
 
-//app.use(express.urlencoded({ extended: true }))
+app.use(express.urlencoded({ extended: true }))
 // // parse json
 app.use(express.json())
 
 app.use('/paintings', express.static('paintings'))
 app.use('/paintings/:id', express.static('particular-painting'))
 app.use('/api/paintings', paintings)
+app.use('/api/cart', cart)
 app.use('/register', register)
 
 // app.get('/', (res, req) => {
