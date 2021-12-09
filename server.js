@@ -17,6 +17,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
 app.use('/paintings', express.static('paintings'))
+app.use('/cart', express.static('cart'))
 app.use('/paintings/:id', express.static('particular-painting'))
 app.use('/api/paintings', paintings)
 app.use('/api/cart', cart)
