@@ -1,36 +1,31 @@
 require('dotenv').config()
-const {Client} = require('pg');
-const client = new Client({
+const {Pool} = require('pg');
+const pool = new Pool({
     port: process.env.PORT,
     user: process.env.USER,
     password: process.env.PASSWORD, 
-    database: 'painting_store'
+    database: 'painting_store',
+    max: 20
+    //more parameters can go here 
+
 });
 
 const getPaintings = async () => {
 
-const paintings = await (client.connect()
-.then(console.log('connected'))
-.then(() => client.query("select * from paintings"))
+const paintings = await pool.query("select * from paintings")
 .then(result => {
     //console.log(result.rows)
 return result.rows})
 .catch(error => {console.log(`oops: ${error}`)})
-.finally((result) => {client.end()
-return result}))
 //console.log(paintings)
 return paintings
 }
 
 const getPaintingById = async (id) => {
-    const painting = await client.connect()
-    .then(() => client.query(`select * from paintings where id = ${id}`))
+    const painting = await pool.query(`select * from paintings where id = ${id}`)
     .then(result => result.rows)
     .catch(error => {console.log(`oops: ${error}`)
 return error})
-    .finally(result => {
-        client.end()
-    })
     return painting
 }
 
@@ -50,9 +45,7 @@ const getPaintingsByKeys = async (object, res) => {
     sentence = sentence.slice(0,-5)
     //console.log(sentence)
 
-    const result = await client.connect()
-    .then(() => console.log('connected'))
-    .then(() => client.query(sentence))
+    const result = await pool.query(sentence)
      .then(result => {
         console.table(result.rows)
         return result.rows
@@ -60,7 +53,6 @@ const getPaintingsByKeys = async (object, res) => {
     .catch(error => {console.log(`oops: ${error}`)
     res.status(404)
 return error})
-.finally(()=>{client.end()})
 
 return result 
     
@@ -69,16 +61,14 @@ return result
 //getPaintingsByKeys({medium: 'oil'})
 
 const getPaintingByKey = async (key, value) => {
-    const result = await client.connect()
-    .then(() =>{console.log('connected')})
-    .then(() => client.query(`select * from paintings where ${key} = '${value}'`))
+    const result = await pool.query(`select * from paintings where ${key} = '${value}'`)
     .then(result => {
         console.table(result.rows)
         return result.rows
     })
     .catch(error => {console.log(`oops: ${error}`)
 return error})
-.finally(()=>{client.end()})
+
 
 return result 
 }

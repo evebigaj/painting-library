@@ -1,26 +1,23 @@
 require('dotenv').config();
-const {Client} = require('pg')
-const client = new Client(
+const {Pool} = require('pg')
+const pool = new Pool(
     {port: process.env.PORT,
         user: process.env.USER,
         database: 'painting_store',
-        password: process.env.PASSWORD
+        password: process.env.PASSWORD,
+        max: 20
     }
 )
 
 const addToCart = async (id) => {
     //nb currently doesn't return anything
-  const cartItem =  await client.connect()
-    .then(()=>{ console.log('connected')
-        client.query(`insert into cart values(${id})`)})
+  const cartItem =  await pool.query(`insert into cart values(${id})`)
     //this may be an issue if id isn't string
     .then(()=> client.query(`select * from cart where item_id = ${id}`))
     //delete below later
     .then(result => {console.table(result.rows)
     return result.rows})
     .catch(e=> console.log(`oops: ${e}`))
-    .finally(result =>{client.end()
-    return result})
 return cartItem
 }
 
@@ -32,9 +29,7 @@ return cartItem
 //select * from paintings where condition 
 
 const getCart = async () =>
-{ const cart = await client.connect()
-    .then(()=> {console.log(`connected`)})
-    .then(()=> client.query(`select * from cart`))
+{ const cart = await pool.query(`select * from cart`)
     .then(result => {console.table(result.rows)
         return result.rows})
     .then(itemIds => {
@@ -44,11 +39,10 @@ const getCart = async () =>
     condition = condition.slice(0,-3)
     console.log(condition)
 return condition})
-.then(condition => client.query(`select * from paintings where ${condition}`))
+.then(condition => pool.query(`select * from paintings where ${condition}`))
     .then(result=> {console.table(result.rows)
     return result.rows})
     .catch(e => console.log(`oops: ${e}`))
-    .finally(() => {client.end()})
 return cart
 }
 
