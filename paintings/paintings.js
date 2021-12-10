@@ -1,4 +1,8 @@
-fetch('/api/paintings?available=true')
+let url = window.location.href
+let questionIndex = url.indexOf('?')
+let queryString = url.slice(questionIndex +1)
+
+fetch(`/api/paintings?available=true&${queryString}`)
 .then(result => result.json())
 .then(result =>{
     let container = document.getElementById("container");

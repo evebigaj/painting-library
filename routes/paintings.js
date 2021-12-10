@@ -6,6 +6,7 @@ paintings.use(express.static('styles.css'))
 
 paintings.get('/', (req, res)=>{
         // document.head.append('<link rel="stylesheet" type="text/css"   href="public/styles.css">')
+        console.log(`the request query has keys ${Object.keys(req.query)}`)
         getPaintingsByKeys(req.query, res)
         .then(result => {
             console.log(result)

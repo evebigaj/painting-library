@@ -24,8 +24,23 @@ fetch(`/api/paintings/${id}`)
     price.innerHTML = `$${painting.price}`
     description.append(price)
 })
+//now make this depend on whether the item is in the cart
+
+let condition = true
 
 const addToCart = async () => {
-   await fetch(`/api/cart/${id}`, {method: 'POST'})
+    
+    let plus = document.getElementById("plus");
+   if(condition){
+       console.log(`the state is still add`)
+       await fetch(`/api/cart/${id}`, {method: 'POST'})
    .then(() => {console.log(`adding successful`)})
+
+   plus.src = '/photos/minus.png'
+   let description = document.getElementById("plusDescription")
+   description.innerHTML = "Remove from basket"
+   condition = false}
+   //make the state depend on the state of the cart rather than defaulting
+   //change text
+   //change state so that clicking now removes from cart 
 }

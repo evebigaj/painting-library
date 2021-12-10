@@ -9,4 +9,5 @@ body {
 img {
   padding: 2vh;
   height: 40vh;
+  cursor:pointer;
 }

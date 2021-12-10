@@ -8,21 +8,33 @@
                 <section class ="right"><h1>Cart</h1></section>
            </header>
         <article id="main">
-            <section id="form-container">
-                <form>
-                    <label for="max-price">Maximum Price:</label>
-                    <input type="text" id="max-price">
-                </form>
-            </section>
-            <section id="link">
-                <div class="container">
-                    <img src="/photos/fallWindow.jpg" />
-                    <div id=#centered>
-                        <a onclick="location.href ='/paintings'">See all paintings</a> <br>
-                    </div>
-                        
-                </div>
-            </section>
+               <section id="left-container">test</section>
+               
+                   <section class="top center-column">
+                       <h1>Landscapes</h1>
+                       <img src="/photos/weeks1.jpg" alt="Landscapes">
+                   </section>
+                   <section class="middle center-column">
+                       <h1>Still Lifes</h1>
+                       <img src="/photos/tulips.jpg" alt="Still Lifes">
+                    </section>
+                   <section class="bottom center-column">
+                       <h1>People</h1>
+                       <img src="/photos/couple.jpg" alt="people">
+                   </section>
+               
+                    <section class="top right-column">
+                        <h1><a href="/paintings?size=small">Small</a></h1>
+                        <img id="small" src="/photos/fallWindow.jpg" alt="Small" onclick="location.href= '/paintings?size=small'">
+                    </section>
+                    <section class="middle right-column">
+                        <h1><a href="/paintings?size=medium">Medium</a></h1>
+                        <img id="medium" src="/photos/patterns.jpg" alt="Medium" onclick="location.href= '/paintings?size=medium'">
+                    </section>
+                    <section class="bottom right-column">
+                        <h1><a href="/paintings?size=large">Large</a></h1>
+                        <img id="large" src="/photos/powerful.jpg" alt="Large" onclick="location.href= '/paintings?size=large'">
+                    </section>
         </article>
 
 

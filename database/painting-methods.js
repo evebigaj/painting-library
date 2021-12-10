@@ -38,12 +38,26 @@ const getPaintingsByKeys = async (object, res) => {
         if(key == 'maxprice'){
             sentenceToConcat = `price <= ${object[key]} and `
         }
+        else if(key==='size'){
+            switch(object[key]){
+                case 'small': 
+                    sentenceToConcat = `width<=16 and height <=16 and `
+                    break;
+                case 'medium':
+                    sentenceToConcat = `width>16 or height>16 and width<=24 and height<=24 and `
+                    break;
+                case 'large':
+                    sentenceToConcat = `width>24 or height>24 and ` 
+                    break;
+        }
+        }
+
         else{ sentenceToConcat = `${key} = '${object[key]}' and `}
 
         sentence = sentence.concat(sentenceToConcat)
     }
     sentence = sentence.slice(0,-5)
-    //console.log(sentence)
+    console.log(sentence)
 
     const result = await pool.query(sentence)
      .then(result => {

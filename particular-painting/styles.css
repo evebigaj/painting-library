@@ -50,6 +50,7 @@ p {
   height: 8vh;
   grid-column: 1;
   margin-left: 0;
+  cursor: pointer;
 }
 
 #plusDescription {
