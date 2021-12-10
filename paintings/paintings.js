@@ -5,6 +5,7 @@ fetch('/api/paintings?available=true')
     result.forEach(painting => {
         let image = document.createElement('img');
         image.src = painting.url;
+        image.onclick = () => {location.href = painting.id}
         container.append(image)
     }
         )
