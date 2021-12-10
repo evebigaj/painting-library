@@ -30,7 +30,7 @@ return error})
 }
 
 const getPaintingsByKeys = async (object, res) => {
-    console.log(Object.keys(object))
+    console.log(`The object keys are ${Object.keys(object)}`)
     let sentence = `select * from paintings where `
     for(key of Object.keys(object)){
         //console.log(key)

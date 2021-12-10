@@ -10,7 +10,7 @@ higher columns */
   row-gap: 5vh;
   grid-template-columns: repeat(2, 30vw);
   grid-template-rows: repeat(2, 40vh);
-  margin-left:10vw;
+  margin-left:5vw;
   justify-items:center;
 }
 
@@ -22,6 +22,7 @@ header {
 .left {
   justify-self: start;
   width: 100%;
+  display: flex;
 }
 
 .right {
