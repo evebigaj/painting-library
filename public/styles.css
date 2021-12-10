@@ -1,12 +1,17 @@
-
+/* smaller gaps between columns vertically
+titles of columns 
+center within columns
+higher columns */
 
 #main {
+  text-align:center;
   margin-top: 10vh;
   display: grid;
-  grid-gap: 5vh;
-  grid-template-columns: repeat(3, 30vw);
-  grid-template-rows: repeat(3, 30vh);
-  margin-left: 20vh;
+  row-gap: 5vh;
+  grid-template-columns: repeat(2, 30vw);
+  grid-template-rows: repeat(2, 40vh);
+  margin-left:10vw;
+  justify-items:center;
 }
 
 header {
@@ -39,9 +44,10 @@ header {
 }
 
 img{
-  width: 60%;
-  height: auto;
+  height: 80%;
+  width: auto;
   cursor: pointer;
+
 }
 
 #left-container {
@@ -56,39 +62,32 @@ right-container {
   grid-column: 3;
 }
 
-.top{
-  grid-row:1;
-}
-.middle{
-  grid-row:2;
-}
 
-.bottom{
-  grid-row:3;
-}
+.center-row{
+  grid-row:1;}
 
-.center-column{
-  grid-column:2;}
+.right-row{
+  grid-row: 2;
 
-.right-column{
-  grid-column: 3;
 }
 
 h1{
-  margin:0;
+  margin:0.5vh;
 }
 
 #small{
-  width:20%;
+  width:30%;
   height:auto
 }
 
 #medium{
-  width: 40%;
+  width: 50%;
   height: auto;
 }
 
 #large{
-  width: 60%;
+  width: 70%;
   height: auto;
 }
+
+
