@@ -1,7 +1,28 @@
 const {Router} = require('express')
 const cart = new Router()
-const {addToCart, getCart} = require('../database/cart-methods')
+const {addToCart, getCart, getById, deleteFromCart} = require('../database/cart-methods')
 
+
+
+cart.get('/:id', (req, res)=>{
+    console.log('getting by id')
+    getById(req.params.id)
+    .then(result => {
+        console.log(`we got a result and it's ${result}`)
+        console.log(`the result length is ${result.length}`)
+        if(result){
+            if(result.length === 0){
+                
+                res.status(204).end()
+            }
+        res.send(result)}
+        else{res.status(404).end()}
+        console.log(`we got past the res.send`)
+        
+    })
+
+
+})
 cart.post('/:id', (req, res)=> {
     console.log(`the request is ${req}`)
 addToCart(req.params.id)
@@ -14,6 +35,11 @@ cart.get('/', (req, res) => {
     .then(result => res.send(result)) 
 })
 
+cart.delete('/:id', (req, res) =>{
+    deleteFromCart(req.params.id)
+    .then(result => res.send(result))
+})
+//next: use this in particular-painting.js
 
 
 module.exports = {cart}

@@ -10,10 +10,10 @@ const pool = new Pool(
 )
 
 const addToCart = async (id) => {
-    //nb currently doesn't return anything
+    
   const cartItem =  await pool.query(`insert into cart values(${id})`)
     //this may be an issue if id isn't string
-    .then(()=> client.query(`select * from cart where item_id = ${id}`))
+    .then(()=> pool.query(`select * from cart where item_id = ${id}`))
     //delete below later
     .then(result => {console.table(result.rows)
     return result.rows})
@@ -46,5 +46,23 @@ return condition})
 return cart
 }
 
-module.exports = {addToCart, getCart}
+//get item by id 
+ 
+const getById = async (id) => {
+    console.log(`the id is ${id}`)
+let item = await pool.query(`select * from cart where item_id=${id}`)
+.then(result => {console.table(result.rows)
+    return result.rows})
+.catch(e=> console.log(`oops: ${e}`))
+
+return item
+}
+
+const deleteFromCart = async (id) => {
+await pool.query(`delete from cart where item_id = ${id}`)
+.then(response => response.rows)
+.catch(e=> console.log(`oops: ${e}`))
+}
+
+module.exports = {addToCart, getCart, getById, deleteFromCart}
 

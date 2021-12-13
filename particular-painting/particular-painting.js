@@ -4,6 +4,32 @@ let numStringsToCut = 'http://localhost3000/paintings/'.length
 let id = url.slice(numStringsToCut+1,url.length-1)
 console.log(id)
 
+//make what we're displaying depend on whether cart has item
+let cartActionIcon = document.getElementById('cartActionIcon');
+let cartActionDescription = document.getElementById("cartActionDescription")
+
+fetch(`/api/cart/${id}`)
+.then(result => {
+    console.log(result.status)
+    if(result.status === 200){
+    
+    return true
+}
+else 
+{
+    return false}
+})
+.then(isInCart => { 
+cartActionIcon.src = isInCart? "/photos/minus.png":"/photos/plus.png"
+return isInCart
+} )
+.then(isInCart => {cartActionDescription.innerHTML = 
+isInCart? 'Remove from basket': 'Add to basket'})
+
+
+
+
+
 fetch(`/api/paintings/${id}`)
 .then(result => result.json())
 .then(result => {
@@ -26,20 +52,44 @@ fetch(`/api/paintings/${id}`)
 })
 //now make this depend on whether the item is in the cart
 
-let condition = true
+
 
 const addToCart = async () => {
+
+let isInCart = await   fetch(`/api/cart/${id}`)
+.then(result => {
+    console.log(result.status)
+    if(result.status === 200){
     
-    let plus = document.getElementById("plus");
-   if(condition){
+    return true
+}
+else 
+{
+    return false}
+})
+
+console.log(isInCart)
+    
+    //let plus = document.getElementById("plus");
+   if(!isInCart){
        console.log(`the state is still add`)
        await fetch(`/api/cart/${id}`, {method: 'POST'})
    .then(() => {console.log(`adding successful`)})
 
-   plus.src = '/photos/minus.png'
-   let description = document.getElementById("plusDescription")
-   description.innerHTML = "Remove from basket"
-   condition = false}
+   cartActionIcon.src = '/photos/minus.png'
+   
+   cartActionDescription.innerHTML = "Remove from basket"
+   }
+   else if(isInCart){
+       await fetch(`/api/cart/${id}`, {method: 'DELETE'})
+       cartActionIcon.src = '/photos/plus.png'
+    cartActionDescription.innerHTML = "Add to basket"
+
+   }
+   //make remove from basket appear on load
+   //make the button action for when it's remove
+   //(i.e. delete route)
+
    //make the state depend on the state of the cart rather than defaulting
    //change text
    //change state so that clicking now removes from cart 
