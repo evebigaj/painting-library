@@ -9,7 +9,17 @@ const pool = new Pool(
     }
 )
 
-const addToCart = async (id) => {
+const generateId = async () => {
+const newId = await pool.query(`select max(session_id) from carts`)
+.then(result => {
+    console.log(result.rows)
+return result.rows})
+.catch(e => console.log(`oops: ${e}`))
+
+return newId
+}
+
+ const addToCart = async (id) => {
     
   const cartItem =  await pool.query(`insert into cart values(${id})`)
     //this may be an issue if id isn't string
@@ -64,5 +74,5 @@ await pool.query(`delete from cart where item_id = ${id}`)
 .catch(e=> console.log(`oops: ${e}`))
 }
 
-module.exports = {addToCart, getCart, getById, deleteFromCart}
+module.exports = {generateId, addToCart, getCart, getById, deleteFromCart}
 

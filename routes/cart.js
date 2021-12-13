@@ -1,8 +1,15 @@
 const {Router} = require('express')
 const cart = new Router()
-const {addToCart, getCart, getById, deleteFromCart} = require('../database/cart-methods')
+const {generateId, addToCart, getCart, getById, deleteFromCart} = require('../database/cart-methods')
 
+// let's do a get cart/session
+//which will return the new id
 
+cart.get('/session', (req, res)=>{
+generateId()
+.then(result => {console.log( `on the backend, the id is ${result}`)
+    res.send(result[0])})
+})
 
 cart.get('/:id', (req, res)=>{
     console.log('getting by id')
