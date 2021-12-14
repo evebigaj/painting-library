@@ -44,11 +44,16 @@ const getCart = async (session_id) =>
         return result.rows})
     .then(itemIds => {
         let condition = ''
-        itemIds.forEach(item_id => condition = condition.concat(`id = ${item_id.item_id} or `));
+        if(itemIds.length===0){
+            condition = `id=1000000`
+        }
+      else{ itemIds.forEach(item_id => condition = condition.concat(`id = ${item_id.item_id} or `));
         console.log(`initially, the condition is ${condition}`)
-    condition = condition.slice(0,-3)
+    condition = condition.slice(0,-3)}
     console.log(condition)
-return condition})
+return condition
+})
+
 .then(condition => pool.query(`select * from paintings where ${condition}`))
     .then(result=> {console.table(result.rows)
     return result.rows})
