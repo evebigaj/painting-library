@@ -1,8 +1,16 @@
+//window.open('mailto:evebigaj@gmail.com')
+
 fetch(`/api/cart?session=${sessionStorage.getItem('session_id')}`)
 .then(result => result.json())
 .then(result =>{
-    result.forEach(painting => {
     let cartContents = document.getElementById("cart-contents")
+    if(result.length===0){
+        let emptyCart = document.createElement('p')
+        emptyCart.innerHTML = 'Your cart is empty'
+        cartContents.append(emptyCart)}
+    else{
+        result.forEach(painting => {
+    
     console.log(painting.url)
     let image = document.createElement('img')
     image.src = painting.url;
@@ -15,7 +23,7 @@ fetch(`/api/cart?session=${sessionStorage.getItem('session_id')}`)
     cartContents.append(dimensions)
     let price = document.createElement('p');
     price.innerHTML = `$${painting.price}`
-    cartContents.append(price)})
+    cartContents.append(price)})}
 })
 
     // let container = document.getElementById("container");

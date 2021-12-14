@@ -8,14 +8,28 @@
 </head>
 
 <body>
-
+    <main>
     <article id="container">
         <section id="cart-contents"></section>
     </article>
 
     <article id="form-container">
-        <form action=""></form>
+        <form action="mailto:eve.bigaj@gmail.com" method="POST" enctype="multipart/form-data">
+            <label for="name">Name: </label>
+            <input type="text" id="name" name="name"> <br>
+            <label for="address1">Address line 1:  </label>
+            <input type="text" id="address1" name="address1"> <br>
+            <label for="address2">Address line 2: </label>
+            <input type="text" id="address2" name="address2"> <br>
+            <label for="email">Email address: </label>
+            <input type="text" id="email" name="email"> <br>
+            <label for="comment">Special requests:  </label>
+            <textarea name="comment" id="comment" cols="30" rows="10">What color would you like me to paint the canvas edges? (Leave blank to give me artistic license.)</textarea>
+            <input type="submit" value="Submit">
+        </form>
     </article>
+
+    </main>
 </body>
 
 </html>
