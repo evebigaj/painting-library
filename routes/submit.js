@@ -9,3 +9,6 @@ res.send('success')
 })
 
 module.exports = {submit}
+
+//next step: onsubmit, run a function which will post the content 
+//and also which will make the paintings unavailable
