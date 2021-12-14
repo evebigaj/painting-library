@@ -17,6 +17,7 @@ img {
 #basket-label{
   justify-self:end;
   font-size:3vh;
+  cursor:pointer;
 }
 
 .right {

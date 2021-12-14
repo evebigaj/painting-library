@@ -7,6 +7,7 @@ body {
   /* background-color: #fdf1dd; */
   /* background-color: #f5e2c4; */
   font-family: Arial, sans-serif;
+   /* background-image: linear-gradient(to bottom, white, rgb(218, 161, 88)); */
   /* background-color: #e1f5c4; */
   /* background-color: #ede574; */
   /* background-color: rgb(156, 168, 168) */
@@ -72,6 +73,7 @@ p {
 #basket-label{
   justify-self:end;
   font-size:3vh;
+  cursor:pointer
 }
 
 .right {
