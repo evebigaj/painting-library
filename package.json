@@ -2,7 +2,7 @@
   "name": "painting_store",
   "version": "1.0.0",
   "description": "",
-  "main": "routes/test.js",
+  "main": "routes/submit.js",
   "scripts": {
     "test": "test",
     "start": "nodemon server.js"
@@ -13,6 +13,7 @@
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
+    "nodemailer": "^6.7.2",
     "passport": "^0.5.0",
     "passport-local": "^1.0.0"
   }

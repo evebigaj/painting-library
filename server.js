@@ -3,6 +3,7 @@ const app = express();
 const {paintings} = require('./routes/paintings')
 const {register} = require('./routes/register')
 const {cart} = require('./routes/cart')
+const {submit} = require('./routes/submit')
 const path = require('path')
 //const cors = require('cors')
 
@@ -22,6 +23,7 @@ app.use('/paintings/:id', express.static('particular-painting'))
 app.use('/api/paintings', paintings)
 app.use('/api/cart', cart)
 app.use('/register', register)
+app.use('/submit', submit)
 
 // app.get('/', (res, req) => {
 //     res.sendFile(path.resolve(__dirname, './public/index.html'))
