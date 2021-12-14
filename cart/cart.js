@@ -1,4 +1,4 @@
-fetch('/api/cart')
+fetch(`/api/cart?session=${sessionStorage.getItem('session_id')}`)
 .then(result => result.json())
 .then(result =>{
     result.forEach(painting => {

@@ -65,6 +65,24 @@ p {
   text-align: left;
 }
 
+#basket{
+  height: 4vh;
+}
+
+#basket-label{
+  justify-self:end;
+  font-size:3vh;
+}
+
+.right {
+  justify-self: end;
+  justify-content:right;
+  width: 100%;
+  text-align: right;
+  padding-right: 3vw;
+  display:flex;
+}
+
 /* #image-box {
   background-color: white;
   padding: 0.5vh;

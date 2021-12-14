@@ -13,7 +13,7 @@ generateId()
 
 cart.get('/:id', (req, res)=>{
     console.log('getting by id')
-    getById(req.params.id)
+    getById(req.query.session, req.params.id)
     .then(result => {
         console.log(`we got a result and it's ${result}`)
         console.log(`the result length is ${result.length}`)
@@ -32,18 +32,18 @@ cart.get('/:id', (req, res)=>{
 })
 cart.post('/:id', (req, res)=> {
     console.log(`the request is ${req}`)
-addToCart(req.params.id)
+addToCart(req.query.session, req.params.id)
 .then(result =>{console.log('reached end of post request')
  res.send(result)})
 })
 
 cart.get('/', (req, res) => {
-    getCart()
+    getCart(req.query.session)
     .then(result => res.send(result)) 
 })
 
 cart.delete('/:id', (req, res) =>{
-    deleteFromCart(req.params.id)
+    deleteFromCart(req.query.session, req.params.id)
     .then(result => res.send(result))
 })
 //next: use this in particular-painting.js

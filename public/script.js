@@ -6,6 +6,8 @@
 
 
 
+
+
 if(!sessionStorage.getItem('session_id')){ 
 fetch('/api/cart/session')
 .then(result => result.json())

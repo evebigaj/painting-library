@@ -7,8 +7,9 @@ console.log(id)
 //make what we're displaying depend on whether cart has item
 let cartActionIcon = document.getElementById('cartActionIcon');
 let cartActionDescription = document.getElementById("cartActionDescription")
+const session = sessionStorage.getItem('session_id')
 
-fetch(`/api/cart/${id}`)
+fetch(`/api/cart/${id}?session=${session}`)
 .then(result => {
     console.log(result.status)
     if(result.status === 200){
@@ -56,7 +57,7 @@ fetch(`/api/paintings/${id}`)
 
 const addToCart = async () => {
 
-let isInCart = await   fetch(`/api/cart/${id}`)
+let isInCart = await fetch(`/api/cart/${id}?session=${session}`)
 .then(result => {
     console.log(result.status)
     if(result.status === 200){
@@ -70,10 +71,10 @@ else
 
 console.log(isInCart)
     
-    //let plus = document.getElementById("plus");
+    //need to make this relative to the new cart
    if(!isInCart){
        console.log(`the state is still add`)
-       await fetch(`/api/cart/${id}`, {method: 'POST'})
+       await fetch(`/api/cart/${id}?session=${session}`, {method: 'POST'})
    .then(() => {console.log(`adding successful`)})
 
    cartActionIcon.src = '/photos/minus.png'
@@ -81,7 +82,7 @@ console.log(isInCart)
    cartActionDescription.innerHTML = "Remove from basket"
    }
    else if(isInCart){
-       await fetch(`/api/cart/${id}`, {method: 'DELETE'})
+       await fetch(`/api/cart/${id}?session=${sessionStorage.getItem('session_id')}`, {method: 'DELETE'})
        cartActionIcon.src = '/photos/plus.png'
     cartActionDescription.innerHTML = "Add to basket"
 
