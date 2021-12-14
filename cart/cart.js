@@ -10,20 +10,20 @@ fetch(`/api/cart?session=${sessionStorage.getItem('session_id')}`)
         cartContents.append(emptyCart)}
     else{
         result.forEach(painting => {
-    
+    let imageBox = document.createElement('div')
+    imageBox.id = 'image-box'
+    cartContents.append(imageBox)
     console.log(painting.url)
     let image = document.createElement('img')
     image.src = painting.url;
-    cartContents.append(image)
-    let heading = document.createElement('h1')
+    imageBox.append(image)
+    let heading = document.createElement('p')
     heading.innerHTML = painting.title;
-    cartContents.append(heading);
+    imageBox.append(heading);
     let dimensions = document.createElement('p');
     dimensions.innerHTML = `${painting.width}"x${painting.height}"`
-    cartContents.append(dimensions)
-    let price = document.createElement('p');
-    price.innerHTML = `$${painting.price}`
-    cartContents.append(price)})}
+    imageBox.append(dimensions)
+   })}
 })
 
     // let container = document.getElementById("container");
@@ -33,4 +33,19 @@ fetch(`/api/cart?session=${sessionStorage.getItem('session_id')}`)
     //     container.append(image)
     // }
     //     )})
+
+// const submit = () => {
+//  console.log(`we're submittiing`)
+// //     const formData = new FormData(document.querySelector('form'))
+// // for (var pair of formData.entries()) {
+// //   console.log(pair[0] + ': ' + pair[1]);
+// // }
+// return false
+// }
+
+const submit = () => {
+    window.alert('submitted!')
+    console.log(`we're submitting!`)
+    return false
+}
    

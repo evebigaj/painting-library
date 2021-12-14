@@ -1,13 +1,59 @@
 
 #container {
   padding: 5vh;
+  background-color: white;
+  margin-right:5vw;
 }
-img {
-  padding: 2vh;
-  height: 40vh;
-}
+
 
 main{
   display:flex;
+  margin: 10vh;
 } 
+
+body{font-family:Arial, sans-serif;
+font-size:3vh;
+ background-image:linear-gradient(to right, rgb(219, 171, 93), rgb(243, 227, 135));}
+
+#form-container{
+  background-color:white;
+  border-radius: 10px;
+  /* height: 80vh; */
+  padding: 3vh;
+  
+
+}
+
+form{display: table}
+input{display: table-cell;
+border-radius: 4px;
+background-color:rgb(248, 244, 205)}
+textarea{border-radius:4px;
+background-color:rgb(248, 244, 205)}
+label{display:table-cell}
+#form-line{display:table-row;
+margin: 10vh;}
+
+#submit{height:8vh;
+  width: 16vh;
+border-radius: 5px;
+background-color:rgb(231, 138, 76);
+font-size: 3vh;
+cursor:pointer;
+}
+
+#cart-contents{
+  width:50vw;
+  display:table;
+}
+
+img {
+  padding: 2vh;
+  height: 20vh;
+  display: table-cell;
+}
+
+#image-box{display:table-row;}
+
+p{display: table-cell;}
 
