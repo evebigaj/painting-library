@@ -8,9 +8,7 @@ font-family: Arial, sans-serif;
 font-size:3.5vh;
 }
 
-
-
-
+/* body{background-image:linear-gradient(to right, rgb(219, 171, 93), rgb(243, 227, 135))} */
 
 #main {
   /* margin-top:3vh; */
@@ -21,6 +19,7 @@ font-size:3.5vh;
   grid-template-rows: repeat(2, 55vh);
   padding-left:5vw;
   justify-items:center;
+  
   /* background-image: linear-gradient(to bottom, white, rgb(218, 161, 88)) */
 }
 
@@ -29,6 +28,7 @@ header {
   display: flex;
   /* background-color: #f5e2c4; */
   height:20vh;
+  
   /* background-image: linear-gradient(to bottom, white, rgb(226, 149, 105))
 rgb(226, 199, 77) */
 }
@@ -38,6 +38,7 @@ rgb(226, 199, 77) */
   justify-self: start;
   width: 100%;
   display: flex;
+  
 }
 
 
@@ -57,15 +58,18 @@ img{
   height: 80%;
   width: auto;
   cursor: pointer;
+  
 
 }
 
 #left-container {
   grid-column: 1;
+  background-color:white;
 }
 
 #center-container {
   grid-column: 2;
+  background-color:white;
 }
 
 right-container {

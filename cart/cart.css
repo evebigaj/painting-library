@@ -16,6 +16,7 @@ font-size:3vh;
  background-image:linear-gradient(to right, rgb(219, 171, 93), rgb(243, 227, 135));}
 
 #form-container{
+  background-image:linear-gradient(to right, rgb(219, 171, 93), rgb(243, 227, 135));
   background-color:white;
   border-radius: 10px;
   /* height: 80vh; */

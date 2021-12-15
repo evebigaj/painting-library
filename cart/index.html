@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <script src="cart.js"></script>
+    
     <link rel="stylesheet" href="cart.css">
     </link>
 </head>
@@ -16,10 +16,10 @@
     </article>
 
     <article id="form-container">
-        <form onsubmit="submit()">
+        <form id="form">
             <div id="form-line">
-            <label for="name">Name: </label>
-            <input type="text" id="name" name="name"> <br> <br>
+                <label for="name">Name: </label>
+                <input type="text" id="name" name="name"> <br> <br>
             </div>
             <div id="form-line">
                 <label for="address1">Address line 1:  </label>
@@ -29,7 +29,7 @@
                 <label for="address2">Address line 2: </label>
                 <input type="text" id="address2" name="address2"> <br> <br>
             </div>
-            
+
             <div id="form-line">
                 <label for="email">Email address: </label>
                 <input type="text" id="email" name="email"> <br> <br>
@@ -44,6 +44,8 @@
     </article>
 
     </main>
+
+    <script src="cart.js"></script>
 </body>
 
 </html>
