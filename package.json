@@ -2,7 +2,7 @@
   "name": "painting_store",
   "version": "1.0.0",
   "description": "",
-  "main": "routes/submit.js",
+  "main": "database/painting-methods.js",
   "scripts": {
     "test": "test",
     "start": "nodemon server.js"

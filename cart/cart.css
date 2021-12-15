@@ -1,7 +1,8 @@
 
 #container {
   padding: 5vh;
-  background-color: white;
+  background-color: rgb(248, 238, 209);
+  border-radius: 10px;
   margin-right:5vw;
 }
 
@@ -13,11 +14,13 @@ main{
 
 body{font-family:Arial, sans-serif;
 font-size:3vh;
- background-image:linear-gradient(to right, rgb(219, 171, 93), rgb(243, 227, 135));}
+ background-image:linear-gradient(to right, rgba(219, 139, 93, 0.5), rgba(243, 227, 135, 0.5));
+ /* background-image:linear-gradient(to right, rgb(219, 171, 93), rgb(243, 227, 135)); */
+}
 
 #form-container{
-  background-image:linear-gradient(to right, rgb(219, 171, 93), rgb(243, 227, 135));
-  background-color:white;
+  /* background-image:linear-gradient(to right, rgba(219, 171, 93, 0.5), rgba(243, 227, 135, 0.5)); */
+  background-color: rgb(248, 238, 209);
   border-radius: 10px;
   /* height: 80vh; */
   padding: 3vh;
@@ -25,15 +28,21 @@ font-size:3vh;
 
 }
 
-form{display: table}
+form{display: table;
+/* table-layout:fixed; */
+}
 input{display: table-cell;
-border-radius: 4px;
-background-color:rgb(248, 244, 205)}
+border-radius: 4px;}
+/* background-color:rgb(248, 244, 205)} */
 textarea{border-radius:4px;
-background-color:rgb(248, 244, 205)}
+/* background-color:rgb(248, 244, 205) */
+}
 label{display:table-cell}
-#form-line{display:table-row;
-margin: 10vh;}
+
+form-line{
+  /* display:table-row; */
+margin: 10vh;
+}
 
 #submit{height:8vh;
   width: 16vh;
@@ -50,11 +59,11 @@ cursor:pointer;
 
 img {
   padding: 2vh;
-  height: 20vh;
+  height: 30vh;
   display: table-cell;
 }
 
-#image-box{display:table-row;}
+/* #image-box{display:table-row;} */
 
 p{display: table-cell;}
 

@@ -1,6 +1,6 @@
 const express = require('express');
 const paintings = new express.Router()
-const {getPaintings, getPaintingById, getPaintingByKey, getPaintingsByKeys} = require('../database/painting-methods')
+const {getPaintings, getPaintingById, getPaintingByKey, getPaintingsByKeys, makePaintingsUnavailable} = require('../database/painting-methods')
 
 paintings.use(express.static('styles.css'))
 
@@ -42,5 +42,17 @@ paintings.get('/:id', (req, res) => {
 }
 res.send(result)
 })})
+
+//put route
+//takes {id1, ..., idn} to make unavailable
+//next step: within makePaintings unavailable, 
+//convert from json to array
+
+paintings.put('/', (req, res)=>{
+    //this may be a source of breaking if .json doesn't work
+    makePaintingsUnavailable(req.body)
+    .then(()=> res.send('success'))
+
+})
 
 module.exports = {paintings}

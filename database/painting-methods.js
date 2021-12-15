@@ -87,11 +87,26 @@ return error})
 return result 
 }
 
+//takes in [id1, id2, ..., idn] and sets available:false
 
+const makePaintingsUnavailable = async array => {
+    let condition = ''
+    array.forEach(id => {
+       condition = condition.concat(`id=${id} or `)
+    })
+    let sentence = `update paintings set available=false where `.concat(condition)
+    sentence = sentence.slice(0,-4)
+    console.log(sentence)
+const result = pool.query(sentence)
+.catch(e=>console.log(`oops: ${e}`))
+return result
+}
+
+makePaintingsUnavailable([2,3])
 //this is a promise because getPaintings is async
 //console.log(`the result is ${getPaintings()}`)
 
-module.exports = {getPaintings, getPaintingById, getPaintingByKey, getPaintingsByKeys}
+module.exports = {makePaintingsUnavailable, getPaintings, getPaintingById, getPaintingByKey, getPaintingsByKeys}
 
 
 
