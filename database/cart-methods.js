@@ -48,14 +48,14 @@ const getCart = async (session_id) =>
             condition = `id=1000000`
         }
       else{ itemIds.forEach(item_id => condition = condition.concat(`id = ${item_id.item_id} or `));
-        console.log(`initially, the condition is ${condition}`)
+        
     condition = condition.slice(0,-3)}
     console.log(condition)
 return condition
 })
 
 .then(condition => pool.query(`select * from paintings where ${condition}`))
-    .then(result=> {console.table(result.rows)
+    .then(result=> {
     return result.rows})
     .catch(e => console.log(`oops: ${e}`))
 return cart
@@ -79,5 +79,10 @@ await pool.query(`delete from carts where session_id= ${session_id} and item_id=
 .catch(e=> console.log(`oops: ${e}`))
 }
 
-module.exports = {generateId, addToCart, getCart, getById, deleteFromCart}
+const deleteAllFromCart = async (session_id) => {
+    await pool.query(`delete from carts where session_id= ${session_id}`)
+.then(response => response.rows)
+.catch(e=> console.log(`oops: ${e}`))
+}
+module.exports = {deleteAllFromCart, generateId, addToCart, getCart, getById, deleteFromCart}
 

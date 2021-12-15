@@ -44,12 +44,24 @@ const form = document.getElementById('form')
 //4) clear their cart 
 //5) potentially: remove sesion id. 
 
-const submit = () => {
+//next step: debug
+//I think it's the chaining of the cart contents that's the problem?
+//see if I can use the const instead of needint to chain? 
 
+const submit = async () => {
+//fetch cart contents 
+//make a string of titles to concatenate to order 
+try{let emailText = await fetch(`/api/cart?session=${sessionStorage.getItem('session_id')}`)
+.then(result => result.json())
+.then(result => { let emailText = 'Paintings:'
+result.forEach(painting => emailText = emailText + '\n' + painting.title
+    )
+return emailText
+})
   const formData = new FormData(document.querySelector('form'))
-    let newData = ''
+    
   for (let pair of formData.entries()) {
- newData = newData +`\n` + pair[0]  + ': ' + pair[1]
+ emailText = emailText +`\n` + pair[0]  + ': ' + pair[1]
   }
 // for (var pair of formData.entries()) {
 //   console.log(pair[0] + ': ' + pair[1]);
@@ -59,8 +71,25 @@ const submit = () => {
   fetch('/submit', {method: 'POST', headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({"content": newData})})
+    body: JSON.stringify({"content": emailText})})}
   //fetch submit, request type POST, req.body.content  = ...
+catch(e){
+    console.log(`The error is ${e}`)
+}
+
+//make paintings unavailable:
+//fetch all id's from the cart
+//define a helper function that takes id array 
+//and for each element of the array, sets available: false 
+// connect it to a put route that takes req.body = {id1: id1, id2: id2}
+
+//to make this more backend-first:
+//the put route takes in the session id
+//so I think I can do app.use('/api/paintings/remove', (req, res, next) => {cart.get})
+//then gets from the cart 
+//then sends array of items to helper fn
+
+fetch(`/api/cart?session=${sessionStorage.getItem('session_id')}`, {method: 'DELETE'})
 
 return false
 }

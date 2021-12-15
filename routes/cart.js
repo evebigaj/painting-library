@@ -1,6 +1,6 @@
 const {Router} = require('express')
 const cart = new Router()
-const {generateId, addToCart, getCart, getById, deleteFromCart} = require('../database/cart-methods')
+const {generateId, addToCart, getCart, getById, deleteFromCart, deleteAllFromCart} = require('../database/cart-methods')
 
 // let's do a get cart/session
 //which will return the new id
@@ -42,6 +42,10 @@ cart.get('/', (req, res) => {
     .then(result => res.send(result)) 
 })
 
+cart.delete('/', (req, res)=>{
+    deleteAllFromCart(req.query.session)
+    .then(result => res.send(result))
+})
 cart.delete('/:id', (req, res) =>{
     deleteFromCart(req.query.session, req.params.id)
     .then(result => res.send(result))
