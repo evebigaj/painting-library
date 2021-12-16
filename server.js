@@ -6,16 +6,17 @@ const {paintings} = require('./routes/paintings')
 const {register} = require('./routes/register')
 const {cart} = require('./routes/cart')
 const {submit} = require('./routes/submit')
-const path = require('path')
+const path = require('path');
+const { allowedNodeEnvironmentFlags } = require('process');
 //const cors = require('cors')
 
 //app.use(cors())
 
 //app.use(express.static(__dirname + '/public'))
 //possible that I'll need to use __dirname for heroku
-// if(process.env.NODE_ENV === 'production'){
-
-// }
+if(process.env.NODE_ENV === 'production'){
+app.use(express.static(path.join(__dirname, 'client/build')))
+}
 
 app.use(express.urlencoded({ extended: true }))
 
