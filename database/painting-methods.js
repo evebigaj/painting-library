@@ -30,10 +30,12 @@ const pool = new Pool(
 // return paintings
 // }
 
-const getPaintingById = async (id) => {
+const getPaintingById = async (id, res) => {
     const painting = await pool.query(`select * from paintings where id = ${id}`)
-    .then(result => result.rows)
+    .then(result => {console.table(result.rows)
+        return result.rows})
     .catch(error => {console.log(`oops: ${error}`)
+    res.status(404)
 return error})
     return painting
 }

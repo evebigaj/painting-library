@@ -38,9 +38,11 @@ paintings.get('/', (req, res)=>{
 )
 
 paintings.get('/:id', (req, res) => {
+    console.log(`sending to getPaintingsById`)
     getPaintingById(req.params.id, res)
     .then(result => {
 res.send(result)
+return result
 })
 .catch(e=>{console.log(e)})
 

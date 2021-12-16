@@ -31,7 +31,7 @@ isInCart? 'Remove from basket': 'Add to basket'})
 
 
 
-
+console.log(`fetching the paintings`)
 fetch(`/api/paintings/${id}`)
 .then(result => result.json())
 .then(result => {
