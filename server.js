@@ -15,13 +15,13 @@ const { allowedNodeEnvironmentFlags } = require('process');
 
 //app.use(express.static(__dirname + '/public'))
 //possible that I'll need to use __dirname for heroku
-if(process.env.NODE_ENV === 'production'){
-app.use(express.static(path.join(__dirname, 'client/build')))
-}
+// if(process.env.NODE_ENV === 'production'){
+// app.use(express.static(path.join(__dirname, 'client/build')))
+// }
 
 app.use(express.urlencoded({ extended: true }))
 
-app.use(express.static('client/public'))
+app.use(express.static(path.join(__dirname, 'client/public')))
 // app.use('*', express.static(path.join(__dirname, 'public')))
 
 // // parse json
