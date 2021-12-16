@@ -6,7 +6,7 @@ queryString = url.slice(questionIndex +1)}
 
 console.log('fetching paintings')
 fetch(`/api/paintings?available=true&${queryString}`)
-.then(result => {console.log(`we got a result and it's ${result.json()}`)
+.then(result => {
     return result.json()})
 .then(result =>{
     let container = document.getElementById("container");
