@@ -1,7 +1,8 @@
 //next: delete backend console logs 
 console.log(window.location.href)
 let url = window.location.href
-let numStringsToCut = 'http://localhost3000/paintings/'.length
+let numStringsToCut = 'https://painting-library.herokuapp.com/paintings/'.length
+// let numStringsToCut = 'http://localhost3000/paintings/'.length
 let id = url.slice(numStringsToCut+1,url.length-1)
 
 
