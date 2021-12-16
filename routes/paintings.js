@@ -11,9 +11,9 @@ paintings.get('/', (req, res)=>{
         .then(result => {
             console.log(`the helper function had a result of ${result}`)
      console.log(`the helper function had a response status of ${res.status}`)
-            if(!res.status){            
+                       
             res.send(result)
-        return result}})
+        return result})
     //     .then(result => {
     //     // if(!result){
     //     //     res.status(404).send('Resource not found')
