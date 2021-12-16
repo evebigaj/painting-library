@@ -6,7 +6,7 @@ const submit = new Router()
 submit.post('/', (req, res)=>{
     console.log('we hit the backend submission')
     console.log(`the request body is ${req.body} and its content is ${req.body.content}`)
-sendEmail(req.body.content)
+sendEmail(req.body.content, res)
 res.send('success')
 })
 

@@ -1,8 +1,9 @@
 require('dotenv').config()
+const res = require('express/lib/response');
 const nodemailer = require('nodemailer')
 
 
-const sendEmail = (data) => {
+const sendEmail = (data, res) => {
 
 
 var transporter = nodemailer.createTransport({
@@ -23,6 +24,7 @@ var mailOptions = {
 transporter.sendMail(mailOptions, function(error, info){
   if (error) {
     console.log(error);
+    res.status(405).send(`could not send email because ${e}`)
   } else {
     console.log('Email sent: ' + info.response);
   }
