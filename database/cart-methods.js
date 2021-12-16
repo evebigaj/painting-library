@@ -1,10 +1,10 @@
 require('dotenv').config();
 const {Pool} = require('pg')
 const pool = new Pool(
-    {port: process.env.PORT,
-        user: process.env.USER,
+    {port: process.env.PG_PORT,
+        user: process.env.PG_USER,
         database: 'painting_store',
-        password: process.env.PASSWORD,
+        password: process.env.PG_PASSWORD,
         max: 20
     }
 )

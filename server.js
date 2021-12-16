@@ -1,3 +1,5 @@
+require('dotenv').config()
+const PORT = process.env.PORT | 3000
 const express = require('express')
 const app = express();
 const {paintings} = require('./routes/paintings')
@@ -10,6 +12,10 @@ const path = require('path')
 //app.use(cors())
 
 //app.use(express.static(__dirname + '/public'))
+//possible that I'll need to use __dirname for heroku
+// if(process.env.NODE_ENV === 'production'){
+
+// }
 
 app.use(express.static('client/public'))
 // app.use('*', express.static(path.join(__dirname, 'public')))
@@ -30,4 +36,4 @@ app.use('/submit', submit)
 //     res.sendFile(path.resolve(__dirname, './public/index.html'))
 // })
 
-app.listen(3000, () => console.log('listening on port 3000'))
+app.listen(PORT, () => console.log(`listening on port ${PORT}`))
