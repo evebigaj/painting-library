@@ -9,7 +9,8 @@ paintings.get('/', (req, res)=>{
         
         getPaintingsByKeys(req.query, res)
         .then(result => {
-    
+            console.log(`the helper function had a result of ${result}`)
+     console.log(`the helper function had a response status of ${res.status}`)
             if(!res.status){            
             res.send(result)
         return result}})

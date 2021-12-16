@@ -39,7 +39,7 @@ return error})
 }
 
 const getPaintingsByKeys = async (object, res) => {
-   
+   console.log(`getting paintings by keys`)
     let sentence = `select * from paintings where `
     for(key of Object.keys(object)){
         
@@ -70,7 +70,8 @@ const getPaintingsByKeys = async (object, res) => {
 
     const result = await pool.query(sentence)
      .then(result => {
-        
+        console.log(`the rows of the helper result are ${result.rows}`)
+        console.table(result.rows)
         return result.rows
     })
     .catch(error => {console.log(`oops: ${error}`)
