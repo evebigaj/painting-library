@@ -9,9 +9,10 @@ paintings.get('/', (req, res)=>{
         
         getPaintingsByKeys(req.query, res)
         .then(result => {
-            
+    
+            if(!res.status){            
             res.send(result)
-        return result})
+        return result}})
     //     .then(result => {
     //     // if(!result){
     //     //     res.status(404).send('Resource not found')
