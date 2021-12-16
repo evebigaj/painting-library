@@ -2,10 +2,15 @@
   "name": "painting_store",
   "version": "1.0.0",
   "description": "",
-  "main": "database/painting-methods.js",
+  "main": "server.js",
+  "engines": {
+    "node":"14.17.5",
+    "npm": "6.14.14"
+  },
   "scripts": {
-    "test": "test",
-    "start": "nodemon server.js"
+    "start": "nodemon server.js",
+    "heroku-postbuild": "cd client && npm install && npm run build"
+   
   },
   "author": "",
   "license": "ISC",
@@ -16,5 +21,6 @@
     "nodemailer": "^6.7.2",
     "passport": "^0.5.0",
     "passport-local": "^1.0.0"
-  }
+  },
+  "proxy": "http://localhost:3000"
 }
