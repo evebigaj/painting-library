@@ -1,5 +1,5 @@
 require('dotenv').config()
-const PORT = process.env.PORT | 3000
+const PORT = process.env.PORT || 3000
 const express = require('express')
 const app = express();
 const {paintings} = require('./routes/paintings')
@@ -22,6 +22,7 @@ const { allowedNodeEnvironmentFlags } = require('process');
 app.use(express.urlencoded({ extended: true }))
 
 app.use(express.static(path.join(__dirname, 'client/public')))
+console.log(path.join(__dirname, 'client/public'))
 // app.use('*', express.static(path.join(__dirname, 'public')))
 
 // // parse json
