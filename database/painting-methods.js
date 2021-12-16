@@ -120,7 +120,6 @@ const result = pool.query(sentence)
 return result
 }
 
-makePaintingsUnavailable([2,3])
 //this is a promise because getPaintings is async
 //console.log(`the result is ${getPaintings()}`)
 

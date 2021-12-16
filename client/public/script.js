@@ -13,5 +13,5 @@ fetch('/api/cart/session')
 .then(result => result.json())
 .then(result => result.max +1)
 .then(newId => {sessionStorage.setItem('session_id', newId)
-console.log(`the new id is ${sessionStorage.getItem('session_id')}`)})
+})
 }

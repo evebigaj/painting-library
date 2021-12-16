@@ -3,7 +3,9 @@
 
 
 fetch(`/api/cart?session=${sessionStorage.getItem('session_id')}`)
-.then(result => result.json())
+.then(result => {if(result.status === 204){
+  return []}
+ else {return result.json()}})
 .then(result =>{
     let cartContents = document.getElementById("cart-contents")
     if(result.length===0){

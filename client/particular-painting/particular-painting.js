@@ -1,8 +1,9 @@
+//next: delete backend console logs 
 console.log(window.location.href)
 let url = window.location.href
 let numStringsToCut = 'http://localhost3000/paintings/'.length
 let id = url.slice(numStringsToCut+1,url.length-1)
-console.log(id)
+
 
 //make what we're displaying depend on whether cart has item
 let cartActionIcon = document.getElementById('cartActionIcon');
@@ -11,7 +12,7 @@ const session = sessionStorage.getItem('session_id')
 
 fetch(`/api/cart/${id}?session=${session}`)
 .then(result => {
-    console.log(result.status)
+    
     if(result.status === 200){
     
     return true
@@ -37,7 +38,7 @@ fetch(`/api/paintings/${id}`)
     let painting = result[0]
     let imageBox = document.getElementById("image-box")
     let description = document.getElementById('description')
-    console.log(painting.url)
+   
     let image = document.createElement('img')
     image.src = painting.url;
     imageBox.append(image)
@@ -59,7 +60,7 @@ const addToCart = async () => {
 
 let isInCart = await fetch(`/api/cart/${id}?session=${session}`)
 .then(result => {
-    console.log(result.status)
+
     if(result.status === 200){
     
     return true
@@ -69,13 +70,12 @@ else
     return false}
 })
 
-console.log(isInCart)
     
     //need to make this relative to the new cart
    if(!isInCart){
-       console.log(`the state is still add`)
+       
        await fetch(`/api/cart/${id}?session=${session}`, {method: 'POST'})
-   .then(() => {console.log(`adding successful`)})
+   
 
    cartActionIcon.src = '/photos/minus.png'
    
