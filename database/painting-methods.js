@@ -11,7 +11,7 @@ const devConfig = {
 
 const proConfig = {
     connectionString: process.env.DATABASE_URL,
-    ssl: {rejectUnauthorized:true}
+    ssl: {rejectUnauthorized:false}
     // sslmode: 'require'
 }
 const pool = new Pool(
