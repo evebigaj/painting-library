@@ -1,14 +1,21 @@
 require('dotenv').config()
 const {Pool} = require('pg');
-const pool = new Pool({
-    port: process.env.PG_PORT,
-    user: process.env.PG_USER,
-    password: process.env.PG_PASSWORD, 
-    database: process.env.PG_DATABASE,
-    max: 20
-    //more parameters can go here 
 
-});
+const devConfig = {
+        port: process.env.PG_PORT,
+        user: process.env.PG_USER,
+        database: 'painting_store',
+        password: process.env.PG_PASSWORD,
+        max: 20
+}
+
+const proConfig = {
+    connectionString: process.env.DATABASE_URL
+}
+const pool = new Pool(
+    process.env.NODE_ENV==='production'? proConfig: devConfig
+   
+);
 
 const getPaintings = async () => {
 
