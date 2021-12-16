@@ -1,5 +1,7 @@
 //window.open('mailto:evebigaj@gmail.com')
 
+
+
 fetch(`/api/cart?session=${sessionStorage.getItem('session_id')}`)
 .then(result => result.json())
 .then(result =>{
@@ -51,31 +53,40 @@ const form = document.getElementById('form')
 const submit = async () => {
 //fetch cart contents 
 //make a string of titles to concatenate to order 
-try{let emailText = await fetch(`/api/cart?session=${sessionStorage.getItem('session_id')}`)
-.then(result => result.json())
-.then(result => { let emailText = 'Paintings:'
-result.forEach(painting => emailText = emailText + '\n' + painting.title
-    )
-return emailText
-})
-  const formData = new FormData(document.querySelector('form'))
+
+//1. get cart and form contents and email them 
+  try{
+    let emailText = await fetch(`/api/cart?session=${sessionStorage.getItem('session_id')}`)
+   .then(result => result.json())
+   .then(result => {   
+      let emailText = 'Paintings:'
+      result.forEach(painting => emailText = emailText + '\n' + painting.title
+      )
+      return emailText})
+    //at this point, the email text has all cart contents 
+
+    const formData = new FormData(document.querySelector('form'))
     
-  for (let pair of formData.entries()) {
- emailText = emailText +`\n` + pair[0]  + ': ' + pair[1]
-  }
-// for (var pair of formData.entries()) {
-//   console.log(pair[0] + ': ' + pair[1]);
+    for (let pair of formData.entries()) {
+      emailText = emailText +`\n` + pair[0]  + ': ' + pair[1]
+    }
+    //now email text is cart contents + form contents
+    //about to post it to /submit
+    //which will send an email
 
-//next step: what is req.body?
-
-  fetch('/submit', {method: 'POST', headers: {
+    await fetch('/submit', {
+      method: 'POST', 
+      headers: {
       'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({"content": emailText})})}
-  //fetch submit, request type POST, req.body.content  = ...
-catch(e){
+      },
+      body: JSON.stringify({"content": emailText})
+    })
+    
+  }
+  
+  catch(e){
     console.log(`The error is ${e}`)
-}
+  }
 
 //make paintings unavailable:
 //fetch all id's from the cart
@@ -89,7 +100,31 @@ catch(e){
 //then gets from the cart 
 //then sends array of items to helper fn
 
-fetch(`/api/cart?session=${sessionStorage.getItem('session_id')}`, {method: 'DELETE'})
+//now we'll make paintings from cart unavailable:
+
+  try{
+    console.log(`starting to fetch cart contents`)
+    fetch(`/api/cart?session=${sessionStorage.getItem('session_id')}`)
+    .then(response => {console.log(`we got a response and it's ${response.json()}, with first element ${response.json()[0]}`)
+    return response.json()})
+    .then(response => {let body = {}
+//have a case for empty cart
+if(response.length >0){
+response.forEach(painting => body[painting.item_id] = painting.item_id)
+}
+console.log(`the body is ${body}`)
+return body
+})
+.then(body => {
+fetch(`/api/paintings`, {method: 'PUT', body: JSON.stringify(body)}
+)
+})
+}
+catch(e){
+  console.log(`the error in the put request is ${e}`)
+}
+
+await fetch(`/api/cart?session=${sessionStorage.getItem('session_id')}`, {method: 'DELETE'})
 
 return false
 }

@@ -11,15 +11,16 @@ const path = require('path')
 
 //app.use(express.static(__dirname + '/public'))
 
-app.use(express.static('public'))
+app.use(express.static('client/public'))
+// app.use('*', express.static(path.join(__dirname, 'public')))
 
 app.use(express.urlencoded({ extended: true }))
 // // parse json
 app.use(express.json())
 
-app.use('/paintings', express.static('paintings'))
-app.use('/cart', express.static('cart'))
-app.use('/paintings/:id', express.static('particular-painting'))
+app.use('/paintings', express.static('client/paintings'))
+app.use('/cart', express.static('client/cart'))
+app.use('/paintings/:id', express.static('client/particular-painting'))
 app.use('/api/paintings', paintings)
 app.use('/api/cart', cart)
 app.use('/register', register)

@@ -41,13 +41,13 @@ const getPaintingsByKeys = async (object, res) => {
         else if(key==='size'){
             switch(object[key]){
                 case 'small': 
-                    sentenceToConcat = `width<=16 and height <=16 and `
+                    sentenceToConcat = `(width<=16 and height <=16) and `
                     break;
                 case 'medium':
-                    sentenceToConcat = `width>16 or height>16 and width<=24 and height<=24 and `
+                    sentenceToConcat = `(width>16 or height>16) and width<=24 and height<=24 and `
                     break;
                 case 'large':
-                    sentenceToConcat = `width>24 or height>24 and ` 
+                    sentenceToConcat = `(width>24 or height>24) and ` 
                     break;
         }
         }
@@ -89,7 +89,18 @@ return result
 
 //takes in [id1, id2, ..., idn] and sets available:false
 
-const makePaintingsUnavailable = async array => {
+const convertToArray = object => {
+    let array = []
+for(let key of Object.keys(object)){
+    array.push(key)
+}
+return array 
+}
+
+const makePaintingsUnavailable = async object => {
+
+    let array = convertToArray(object)
+    console.log(`The array is ${array}`)
     let condition = ''
     array.forEach(id => {
        condition = condition.concat(`id=${id} or `)

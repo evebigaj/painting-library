@@ -11,13 +11,14 @@ img {
 }
 
 #basket{
-  height: 4vh;
+  height: 3vh;
 }
 
 #basket-label{
-  justify-self:end;
+  /* justify-self:end; */
   font-size:3vh;
   cursor:pointer;
+  margin:0.5vh;
 }
 
 .right {
