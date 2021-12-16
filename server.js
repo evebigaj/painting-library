@@ -7,7 +7,7 @@ const {paintings} = require('./routes/paintings')
 const {cart} = require('./routes/cart')
 const {submit} = require('./routes/submit')
 const path = require('path');
-const { allowedNodeEnvironmentFlags } = require('process');
+
 
 //const cors = require('cors')
 
