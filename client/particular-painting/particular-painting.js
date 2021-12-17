@@ -12,6 +12,16 @@ console.log(`the id is ${id}`)
 //make what we're displaying depend on whether cart has item
 let cartActionIcon = document.getElementById('cartActionIcon');
 let cartActionDescription = document.getElementById("cartActionDescription")
+
+
+if(!sessionStorage.getItem('session_id')){ 
+fetch('/api/cart/session')
+.then(result => result.json())
+.then(result => result.max +1)
+.then(newId => {sessionStorage.setItem('session_id', newId)
+})
+}
+
 const session = sessionStorage.getItem('session_id')
 
 fetch(`/api/cart/${id}?session=${session}`)
@@ -74,18 +84,21 @@ else
     return false}
 })
 
+console.log(`Is in cart is ${isInCart}`)
     
     
    if(!isInCart){
-       
+       console.log('about to send to cart')
        await fetch(`/api/cart/${id}?session=${session}`, {method: 'POST'})
    
 
    cartActionIcon.src = '/photos/minus.png'
    
    cartActionDescription.innerHTML = "Remove from basket"
+   
    }
-   else if(isInCart){
+
+   else if(isInCart){console.log('is in cart')
        await fetch(`/api/cart/${id}?session=${sessionStorage.getItem('session_id')}`, {method: 'DELETE'})
        cartActionIcon.src = '/photos/plus.png'
     cartActionDescription.innerHTML = "Add to basket"
