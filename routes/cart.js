@@ -54,7 +54,7 @@ addToCart(req.query.session, req.params.id, res)
 .then(result =>{
  res.send(result)})
 })
-.catch(e=>console.log(`the error is ${e} and the status is ${res.status}`))
+
 
 
 
