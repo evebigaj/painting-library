@@ -4,8 +4,8 @@
 console.log(window.location.href)
 let url = window.location.href
 //let numStringsToCut = process.env.NODE_ENV==='production'? 
-//let numStringsToCut = 'https://painting-library.herokuapp.com/paintings/'.length
-let numStringsToCut = 'http://localhost3000/paintings/'.length
+let numStringsToCut = 'https://painting-library.herokuapp.com/paintings/'.length
+//let numStringsToCut = 'http://localhost3000/paintings/'.length
 let id = url.slice(numStringsToCut,url.length-1)
 console.log(`the id is ${id}`)
 
