@@ -49,11 +49,12 @@ cart.get('/:id', (req, res)=>{
 })
 
 cart.post('/:id', (req, res)=> {
-   
+   console.log('sending post request over to helper function')
 addToCart(req.query.session, req.params.id, res)
 .then(result =>{
  res.send(result)})
 })
+.catch(e=>console.log(`the error is ${e} and the status is ${res.status}`))
 
 
 

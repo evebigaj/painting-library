@@ -59,10 +59,10 @@ return cart
  const addToCart = async (session_id, item_id, res) => {
     
   const cartItem =  await pool.query(`insert into carts values(${session_id}, ${item_id})`)
-    //this may be an issue if item_id isn't string
+    
     .then(()=> pool.query(`select * from carts where session_id= ${session_id} and item_id = ${item_id}`))
     //delete below later
-    .then(result => {
+    .then(result => { console.table(result.rows)
     return result.rows})
     .catch(e=> {
         res.status(400)
