@@ -7,15 +7,15 @@ const sendEmail = (data, res) => {
 
 
 var transporter = nodemailer.createTransport({
-  service: 'gmail',
+  service: 'hotmail',
   auth: {
-    user: 'eve.bigaj@gmail.com',
-    pass: 'pugunderwear8'
+    user: 'beverek@hotmail.com',
+    pass: 'ourrealwork8'
   }
 });
 
 var mailOptions = {
-  from: 'eve.bigaj@gmail.com',
+  from: 'beverek@hotmail.com',
   to: 'eve.bigaj@gmail.com',
   subject: 'New painting order',
   text: data
