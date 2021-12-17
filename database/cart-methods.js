@@ -22,6 +22,7 @@ const pool = new Pool(
 const generateIdArray = async (res) => {
 const newId = await pool.query(`select max(session_id) from carts`)
 .then(result => {
+    console.table(result.rows)
 return result.rows})
 .catch(e => { res.status(404);
     console.log(`oops: ${e}`);

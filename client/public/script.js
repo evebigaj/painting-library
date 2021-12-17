@@ -7,7 +7,7 @@
 
 
 
-
+console.log('getting session storage')
 if(!sessionStorage.getItem('session_id')){ 
 fetch('/api/cart/session')
 .then(result => result.json())
@@ -15,3 +15,5 @@ fetch('/api/cart/session')
 .then(newId => {sessionStorage.setItem('session_id', newId)
 })
 }
+
+console.log(`the session storage is ${sessionStorage.getItem('session_id')}`)

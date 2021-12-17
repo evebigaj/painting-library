@@ -8,6 +8,7 @@ const {generateIdArray, addToCart, getCart, getById, deleteFromCart, deleteAllFr
 
 //this generates and fetches new session id:
 cart.get('/session', (req, res)=>{
+    console.log(`asking helper function to generate new id`)
 generateIdArray(res)
 .then(result => {
     res.send(result[0])})
