@@ -13,6 +13,7 @@ main {
 body {
   font-family: Arial, sans-serif;
   font-size: 3vh;
+  color: rgb(93, 91, 110);
   background-image: linear-gradient(
     to right,
     rgba(219, 139, 93, 0.5),
