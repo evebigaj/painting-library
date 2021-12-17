@@ -1,7 +1,7 @@
 body {
   font-family: Arial, sans-serif;
   color: rgb(93, 91, 110);
-  margin-left:5vw;
+  margin-left: 5vw;
 }
 
 h1 {
@@ -45,6 +45,7 @@ h1 {
   height: 80%;
   padding: 0;
   margin: 0;
+  cursor: pointer;
 }
 
 #basket-label {
@@ -71,15 +72,6 @@ header {
   height: 15vh;
 }
 
-body {
-  /* background-color: #fdf1dd; */
-  /* background-color: #f5e2c4; */
-  font-family: Arial, sans-serif;
-  /* background-image: linear-gradient(to bottom, white, rgb(218, 161, 88)); */
-  /* background-color: #e1f5c4; */
-  /* background-color: #ede574; */
-  /* background-color: rgb(156, 168, 168) */
-}
 img {
   height: 80vh;
 }
@@ -120,11 +112,11 @@ p {
 
 #cartActionIcon {
   height: 8vh;
-  
+
   grid-column: 1;
-  margin:0 auto;
+  margin: 0 auto;
   padding-top: 5vh;
-  padding-bottom:5vh;
+  padding-bottom: 5vh;
   /* margin-left: 0; */
   cursor: pointer;
 }
@@ -134,7 +126,7 @@ p {
   font-size: 4vh;
   margin-left: 1vw;
   padding-top: 3vh;
-  padding-bottom:3vh;
+  padding-bottom: 3vh;
   /* margin: auto; */
 }
 
@@ -169,16 +161,32 @@ p {
   display: flex;
 }
 
-#info{margin: 0 auto;
-margin-top:5vh;}
+#info {
+  margin: 0 auto;
+  margin-top: 5vh;
+}
 
 /* #image-box {
   background-color: white;
   padding: 0.5vh;
 } */
 
-@media only screen and (max-width: 300px) {
+#page-title {
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 600px) {
   #info {
     display: block;
+    margin-top: 10vh;
+  }
+  img {
+    width: 90%;
+    height: auto;
+  }
+
+  #basket {
+    height: 3vh;
+    width: auto;
   }
 }
