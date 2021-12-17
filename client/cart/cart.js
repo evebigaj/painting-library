@@ -64,6 +64,7 @@ const submit = async () => {
       let emailText = 'Paintings:'
       result.forEach(painting => emailText = emailText + '\n' + painting.title
       )
+      console.log(`The email text is now ${emailText}`)
       return emailText})
     //at this point, the email text has all cart contents 
 
@@ -72,6 +73,7 @@ const submit = async () => {
     for (let pair of formData.entries()) {
       emailText = emailText +`\n` + pair[0]  + ': ' + pair[1]
     }
+    console.log(`and now the email text is ${emailText}`)
     //now email text is cart contents + form contents
     //about to post it to /submit
     //which will send an email
