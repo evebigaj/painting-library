@@ -15,8 +15,8 @@ var transporter = nodemailer.createTransport({
 });
 
 var mailOptions = {
-  from: process.env.EMAIL,
-  to: process.env.EMAIL,
+  from: 'eve.bigaj@gmail.com',
+  to: 'eve.bigaj@gmail.com',
   subject: 'New painting order',
   text: data
 };
@@ -24,7 +24,7 @@ var mailOptions = {
 transporter.sendMail(mailOptions, function(error, info){
   if (error) {
     console.log(error);
-    res.status(405).send(`could not send email because ${e}`)
+    res.status(405).send(`could not send email because ${error}`)
   } else {
     console.log('Email sent: ' + info.response);
   }
