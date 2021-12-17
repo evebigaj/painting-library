@@ -18,11 +18,13 @@ generateIdArray(res)
 })
 
 cart.get('/', (req, res) => {
+    console.log(`fetching cart contents, the request query is ${req.query}`)
     getCart(req.query.session, res)
     .then(result => {
         if(result.length === 0){
             res.status(204).end()}
-        else {res.send(result)}})
+        else {console.log(`we're sending tehe paintings in the cart back to client`)
+            res.send(result)}})
     .catch(e=>res.status(404).send(e)) 
 })
 

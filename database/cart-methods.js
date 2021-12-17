@@ -33,7 +33,8 @@ return newId
 
 const getCart = async (session_id, res) =>
 { const cart = await pool.query(`select * from carts where session_id = ${session_id}`)
-    .then(result => {console.table(result.rows)
+    .then(result => {console.log(`here are the paintings in the cart`)
+        console.table(result.rows)
         return result.rows})
     .then(itemIds => {
         let condition = ''

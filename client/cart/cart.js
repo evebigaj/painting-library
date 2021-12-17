@@ -48,19 +48,17 @@ const form = document.getElementById('form')
 //4) clear their cart 
 //5) potentially: remove sesion id. 
 
-//next step: debug
-//I think it's the chaining of the cart contents that's the problem?
-//see if I can use the const instead of needint to chain? 
 
-const submit = async () => {
+
 //fetch cart contents 
 //make a string of titles to concatenate to order 
 
 //1. get cart and form contents and email them 
 
-  try{
+const sendEmail = async () => {
+try{
     let emailText = await fetch(`/api/cart?session=${sessionStorage.getItem('session_id')}`)
-   .then(result => result.json())
+   .then(result => {return result.json()})
    .then(result => {   
       let emailText = 'Paintings:'
       result.forEach(painting => emailText = emailText + '\n' + painting.title
@@ -92,6 +90,7 @@ const submit = async () => {
   catch(e){
     console.log(`The error is ${e}`)
   }
+}
 
 //make paintings unavailable:
 //fetch all id's from the cart
@@ -99,29 +98,23 @@ const submit = async () => {
 //and for each element of the array, sets available: false 
 // connect it to a put route that takes req.body = {id1: id1, id2: id2}
 
-//to make this more backend-first:
-//the put route takes in the session id
-//so I think I can do app.use('/api/paintings/remove', (req, res, next) => {cart.get})
-//then gets from the cart 
-//then sends array of items to helper fn
-
-//now we'll make paintings from cart unavailable:
-
+const makeUnavailable = async () => {
 console.log(`we're right before the second try clause`)
   try{
     console.log(`starting to fetch cart contents`)
-    await fetch(`/api/cart?session=${sessionStorage.getItem('session_id')}`)
-    .then(response => {
-    return response.json()})
+    //fetching from cart route
+    fetch(`/api/cart?session=${sessionStorage.getItem('session_id')}`)
+    //this is the line which doesn't happen
+    .then(response => { console.log(`we got a response with the list of paintings`)
+    if(response.length === 0){return []}
+    else { return response.json()}})
     .then(response => {let body = {}
         console.log(`the length of the response is ${response.length}`)
 //have a case for empty cart
 if(response.length >0){
-response.forEach(painting => {console.log(`the paintings you ordered include painting number ${painting.item_id}`)
+response.forEach(painting => {console.log(`the paintings you ordered include painting number ${painting.id}`)
     body[painting.id] = painting.id})
 }
-
-
 return body
 })
 .then(body => {
@@ -136,11 +129,72 @@ fetch(`/api/paintings`, {method: 'PUT',  headers: {
 catch(e){
   console.log(`the error in the put request is ${e}`)
 }
-
-await fetch(`/api/cart?session=${sessionStorage.getItem('session_id')}`, {method: 'DELETE'})
-
-return false
 }
+
+const deleteCart = async () => {
+    return await fetch(`/api/cart?session=${sessionStorage.getItem('session_id')}`, {method: 'DELETE'})}
+
+
+//test:
+
+// fetch(`/api/cart?session=${sessionStorage.getItem('session_id')}`)
+// .then(() => {makeUnavailable()})
+
+console.log(`the session id is ${sessionStorage.getItem('session_id')}`)
+
+const submissionChain = async () => {
+    let chainComplete = false
+    const result = await sendEmail()
+    .then(() => makeUnavailable())
+    .then(()=>deleteCart()
+    )
+    .then(()=>{form.style.display = 'none';
+    let formContainer = document.getElementById('form-container');
+    formContainer.style.display = 'none'
+    let cartContents = document.getElementById('cart-contents')
+    cartContents.style.display = 'none'
+    let container = document.getElementById('container')
+    let heading = document.createElement('h1')
+    heading.innerHTML = 'Success!'
+    container.append(heading)
+    let message = document.createElement('p')
+    message.innerHTML = 'Your paintings will arrive within three days.'
+    container.append(message)
+})
+    return result 
+}
+
+
+
+const submit = () => {
+    
+    submissionChain()
+   
+
+    // sendEmail()
+    // .then(()=> {makeUnavailable()})
+    // .catch(e=>{console.log(`chaining error ${e}`)})
+
+    // try{
+    //     //do I know that this way they happen sequentially? 
+    // await sendEmail();
+    
+    // await makeUnavailable()}
+    // catch(e){
+    //     console.log(`the error in the submit function was ${e}`)
+    // }
+    return false 
+
+// return false
+}
+
+
+
+
+//   if (form !== undefined &&  submitted === true) {
+//     // Validation succeeded, submit the form
+//     form.submit();
+//   }
 
 // // const submit = () => {
 // //     window.alert('submitted!')
