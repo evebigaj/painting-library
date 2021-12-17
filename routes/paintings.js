@@ -54,7 +54,7 @@ return result
 //convert from json to array
 
 paintings.put('/', (req, res)=>{
-    console.log('received the put request')
+    console.log('received the put request for making paintings unavailable')
     //this may be a source of breaking if .json doesn't work
     makePaintingsUnavailable(req.body, res)
     .then(()=> res.send('success'))

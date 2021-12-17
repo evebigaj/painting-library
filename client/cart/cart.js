@@ -108,8 +108,8 @@ const submit = async () => {
 
   try{
     console.log(`starting to fetch cart contents`)
-    fetch(`/api/cart?session=${sessionStorage.getItem('session_id')}`)
-    .then(response => {console.log(`we got a response and it's ${response.json()}, with first element ${response.json()[0]}`)
+    await fetch(`/api/cart?session=${sessionStorage.getItem('session_id')}`)
+    .then(response => {
     return response.json()})
     .then(response => {let body = {}
 //have a case for empty cart
