@@ -106,6 +106,7 @@ const submit = async () => {
 
 //now we'll make paintings from cart unavailable:
 
+console.log(`we're right before the second try clause`)
   try{
     console.log(`starting to fetch cart contents`)
     await fetch(`/api/cart?session=${sessionStorage.getItem('session_id')}`)
@@ -120,6 +121,7 @@ console.log(`the body is ${body}`)
 return body
 })
 .then(body => {
+    console.log('passing request to make paintings unavailable to backend')
 fetch(`/api/paintings`, {method: 'PUT', body: JSON.stringify(body)}
 )
 })
