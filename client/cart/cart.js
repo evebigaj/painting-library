@@ -125,7 +125,10 @@ return body
 })
 .then(body => {
     console.log('passing request to make paintings unavailable to backend')
-fetch(`/api/paintings`, {method: 'PUT', body: JSON.stringify(body)}
+fetch(`/api/paintings`, {method: 'PUT',  headers: {
+      'Content-Type': 'application/json'
+      }, 
+      body: JSON.stringify(body)}
 )
 })
 }

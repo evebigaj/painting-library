@@ -56,6 +56,7 @@ return result
 paintings.put('/', (req, res)=>{
     console.log('received the put request for making paintings unavailable')
     //this may be a source of breaking if .json doesn't work
+    console.log(`the keys in the body are ${Object.keys(req.body)}`)
     makePaintingsUnavailable(req.body, res)
     .then(()=> res.send('success'))
 
