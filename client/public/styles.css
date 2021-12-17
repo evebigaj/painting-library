@@ -2,6 +2,7 @@
 titles of columns 
 center within columns
 higher columns */
+
 html,
 body {
   width: 100%;
@@ -118,8 +119,8 @@ h1 {
 
 .basket-image {
   height: 80%;
-  padding:0;
-  margin:0;
+  padding: 0;
+  margin: 0;
 }
 
 #basket-label {
@@ -146,6 +147,21 @@ h1 {
 a {
   color: rgb(93, 91, 110);
   text-decoration: none;
+}
+
+@media only screen and (max-width: 600px) {
+  #main {
+    display: block;
+    padding-left: 5vw;
+  }
+
+  img {
+    width: 80vw;
+  }
+
+  .basket-image {
+    width: auto;
+  }
 }
 
 /* body{background-color: pink;} */
