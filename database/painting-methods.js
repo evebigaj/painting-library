@@ -104,6 +104,7 @@ return result
 const convertToArray = object => {
     let array = []
 for(let key of Object.keys(object)){
+    console.log(`the request body has key ${key}`)
     array.push(key)
 }
 return array 

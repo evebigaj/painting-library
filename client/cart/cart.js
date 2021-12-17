@@ -115,9 +115,11 @@ console.log(`we're right before the second try clause`)
     .then(response => {let body = {}
 //have a case for empty cart
 if(response.length >0){
-response.forEach(painting => body[painting.item_id] = painting.item_id)
+response.forEach(painting => {console.log(`the paintings you ordered include painting number ${painting.item_id}`)
+    body[painting.item_id] = painting.item_id})
 }
-console.log(`the body is ${body}`)
+
+
 return body
 })
 .then(body => {
