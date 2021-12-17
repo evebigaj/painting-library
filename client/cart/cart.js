@@ -57,40 +57,40 @@ const submit = async () => {
 //make a string of titles to concatenate to order 
 
 //1. get cart and form contents and email them 
-  try{
-    let emailText = await fetch(`/api/cart?session=${sessionStorage.getItem('session_id')}`)
-   .then(result => result.json())
-   .then(result => {   
-      let emailText = 'Paintings:'
-      result.forEach(painting => emailText = emailText + '\n' + painting.title
-      )
-      console.log(`The email text is now ${emailText}`)
-      return emailText})
-    //at this point, the email text has all cart contents 
+//   try{
+//     let emailText = await fetch(`/api/cart?session=${sessionStorage.getItem('session_id')}`)
+//    .then(result => result.json())
+//    .then(result => {   
+//       let emailText = 'Paintings:'
+//       result.forEach(painting => emailText = emailText + '\n' + painting.title
+//       )
+//       console.log(`The email text is now ${emailText}`)
+//       return emailText})
+//     //at this point, the email text has all cart contents 
 
-    const formData = new FormData(document.querySelector('form'))
+//     const formData = new FormData(document.querySelector('form'))
     
-    for (let pair of formData.entries()) {
-      emailText = emailText +`\n` + pair[0]  + ': ' + pair[1]
-    }
-    console.log(`and now the email text is ${emailText}`)
-    //now email text is cart contents + form contents
-    //about to post it to /submit
-    //which will send an email
+//     for (let pair of formData.entries()) {
+//       emailText = emailText +`\n` + pair[0]  + ': ' + pair[1]
+//     }
+//     console.log(`and now the email text is ${emailText}`)
+//     //now email text is cart contents + form contents
+//     //about to post it to /submit
+//     //which will send an email
 
-    await fetch('/submit', {
-      method: 'POST', 
-      headers: {
-      'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({"content": emailText})
-    })
+//     await fetch('/submit', {
+//       method: 'POST', 
+//       headers: {
+//       'Content-Type': 'application/json'
+//       },
+//       body: JSON.stringify({"content": emailText})
+//     })
     
-  }
+//   }
   
-  catch(e){
-    console.log(`The error is ${e}`)
-  }
+//   catch(e){
+//     console.log(`The error is ${e}`)
+//   }
 
 //make paintings unavailable:
 //fetch all id's from the cart
