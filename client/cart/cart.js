@@ -117,7 +117,7 @@ console.log(`we're right before the second try clause`)
 //have a case for empty cart
 if(response.length >0){
 response.forEach(painting => {console.log(`the paintings you ordered include painting number ${painting.item_id}`)
-    body[painting.item_id] = painting.item_id})
+    body[painting.id] = painting.id})
 }
 
 
