@@ -49,6 +49,7 @@ return condition
 
 .then(condition => pool.query(`select * from paintings where ${condition}`))
     .then(result=> {
+        console.table(result.rows)
     return result.rows})
 .catch(e => {console.log(`oops: ${e}`)
 res.status(404);

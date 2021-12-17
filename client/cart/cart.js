@@ -113,6 +113,7 @@ console.log(`we're right before the second try clause`)
     .then(response => {
     return response.json()})
     .then(response => {let body = {}
+        console.log(`the length of the response is ${response.length}`)
 //have a case for empty cart
 if(response.length >0){
 response.forEach(painting => {console.log(`the paintings you ordered include painting number ${painting.item_id}`)
@@ -132,7 +133,7 @@ catch(e){
   console.log(`the error in the put request is ${e}`)
 }
 
-await fetch(`/api/cart?session=${sessionStorage.getItem('session_id')}`, {method: 'DELETE'})
+// await fetch(`/api/cart?session=${sessionStorage.getItem('session_id')}`, {method: 'DELETE'})
 
 return false
 }
