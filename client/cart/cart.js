@@ -10,7 +10,7 @@ fetch(`/api/cart?session=${sessionStorage.getItem('session_id')}`)
     let cartContents = document.getElementById("cart-contents")
     if(result.length===0){
         let emptyCart = document.createElement('p')
-        emptyCart.innerHTML = 'Your cart is empty'
+        emptyCart.innerHTML = 'Your basket is empty'
         cartContents.append(emptyCart)}
     else{
         result.forEach(painting => {

@@ -1,60 +1,68 @@
-
 #container {
   padding: 5vh;
   background-color: rgb(248, 238, 209);
   border-radius: 10px;
-  margin-right:5vw;
+  margin-right: 5vw;
 }
 
-
-main{
-  display:flex;
+main {
+  display: flex;
   margin: 10vh;
-} 
-
-body{font-family:Arial, sans-serif;
-font-size:3vh;
- background-image:linear-gradient(to right, rgba(219, 139, 93, 0.5), rgba(243, 227, 135, 0.5));
- /* background-image:linear-gradient(to right, rgb(219, 171, 93), rgb(243, 227, 135)); */
 }
 
-#form-container{
+body {
+  font-family: Arial, sans-serif;
+  font-size: 3vh;
+  background-image: linear-gradient(
+    to right,
+    rgba(219, 139, 93, 0.5),
+    rgba(243, 227, 135, 0.5)
+  );
+  /* background-image:linear-gradient(to right, rgb(219, 171, 93), rgb(243, 227, 135)); */
+}
+
+#form-container {
   /* background-image:linear-gradient(to right, rgba(219, 171, 93, 0.5), rgba(243, 227, 135, 0.5)); */
   background-color: rgb(248, 238, 209);
   border-radius: 10px;
   /* height: 80vh; */
   padding: 3vh;
-  
-
 }
 
-form{display: table;
-/* table-layout:fixed; */
+form {
+  display: table;
+  /* table-layout:fixed; */
 }
-input{display: table-cell;
-border-radius: 4px;}
+input {
+  display: table-cell;
+  border-radius: 4px;
+}
 /* background-color:rgb(248, 244, 205)} */
-textarea{border-radius:4px;
-/* background-color:rgb(248, 244, 205) */
+textarea {
+  border-radius: 4px;
+  /* background-color:rgb(248, 244, 205) */
 }
-label{display:table-cell}
+label {
+  display: table-cell;
+}
 
-form-line{
+form-line {
   /* display:table-row; */
-margin: 10vh;
+  margin: 10vh;
 }
 
-#submit{height:8vh;
+#submit {
+  height: 8vh;
   width: 16vh;
-border-radius: 5px;
-background-color:rgb(231, 138, 76);
-font-size: 3vh;
-cursor:pointer;
+  border-radius: 5px;
+  background-color: rgb(231, 138, 76);
+  font-size: 3vh;
+  cursor: pointer;
 }
 
-#cart-contents{
-  width:50vw;
-  display:table;
+#cart-contents {
+  width: 50vw;
+  display: table;
 }
 
 img {
@@ -65,5 +73,20 @@ img {
 
 /* #image-box{display:table-row;} */
 
-p{display: table-cell;}
+p {
+  display: table-cell;
+}
 
+@media only screen and (max-width: 600px) {
+  main {
+    display: block;
+  }
+
+  .basket-image {
+    width: auto;
+  }
+
+  #container {
+    margin-bottom: 5vh;
+  }
+}
