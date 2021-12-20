@@ -15,7 +15,7 @@ let numStringsToCut = idIndex
 
 
 //let numStringsToCut = 'https://painting-library.herokuapp.com/paintings/'.length
-//let numStringsToCut = 'http://localhost3000/paintings/'.length
+// let numStringsToCut = 'http://localhost3000/paintings/'.length
 let id = url.slice(numStringsToCut,url.length-1)
 console.log(`the id is ${id}`)
 

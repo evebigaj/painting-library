@@ -68,11 +68,18 @@ form-line {
 
 img {
   padding: 2vh;
-  height: 30vh;
+  width: 80%;
+  height: auto;
   display: table-cell;
 }
 
 /* #image-box{display:table-row;} */
+
+#image-box {
+  width: 30%;
+  height: auto;
+  padding:2vh;
+}
 
 p {
   display: table-cell;
@@ -90,4 +97,6 @@ p {
   #container {
     margin-bottom: 5vh;
   }
+
+  
 }

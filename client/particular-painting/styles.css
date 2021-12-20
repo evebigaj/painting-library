@@ -231,5 +231,7 @@ p {
 
   header {
     height: 10vh;
+    margin:0;
+  padding:0;
   }
 }
