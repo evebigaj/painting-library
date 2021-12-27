@@ -11,7 +11,8 @@ console.log('getting session storage')
 if(!sessionStorage.getItem('session_id')){ 
 fetch('/api/cart/session')
 .then(result => result.json())
-.then(result => result.max +1)
+.then(result => {console.log(result) 
+    return result.max +1})
 .then(newId => {sessionStorage.setItem('session_id', newId)
 })
 }

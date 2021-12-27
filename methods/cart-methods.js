@@ -19,7 +19,7 @@ const pool = new Pool(
     process.env.NODE_ENV==='production'? proConfig: devConfig
 )
 
-const generateIdArray = async (res) => {
+const getMaxIdArray = async (res) => {
 const newId = await pool.query(`select max(session_id) from carts`)
 .then(result => {
     console.table(result.rows)
@@ -111,5 +111,5 @@ const deleteAllFromCart = async (session_id, res) => {
     res.status(405)
     return e})
 }
-module.exports = {deleteAllFromCart, generateIdArray, addToCart, getCart, getById, deleteFromCart}
+module.exports = {deleteAllFromCart, getMaxIdArray, addToCart, getCart, getById, deleteFromCart}
 

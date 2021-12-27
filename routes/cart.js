@@ -1,15 +1,15 @@
 const {Router} = require('express')
 const res = require('express/lib/response')
 const cart = new Router()
-const {generateIdArray, addToCart, getCart, getById, deleteFromCart, deleteAllFromCart} = require('../methods/cart-methods')
+const {getMaxIdArray, addToCart, getCart, getById, deleteFromCart, deleteAllFromCart} = require('../methods/cart-methods')
 
 // let's do a get cart/session
 //which will return the new id
 
-//this generates and fetches new session id:
+//this fetches the maximum sid of all sessions we've had so far:
 cart.get('/session', (req, res)=>{
     console.log(`asking helper function to generate new id`)
-generateIdArray(res)
+getMaxIdArray(res)
 .then(result => {
     res.send(result[0])})
     .catch(e =>{console.log(e);
