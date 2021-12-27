@@ -4,7 +4,7 @@ let questionIndex = url.indexOf('?')
 if(questionIndex !== -1){
 queryString = url.slice(questionIndex +1)}
 
-console.log('fetching paintings')
+
 fetch(`/api/paintings?available=true&${queryString}`)
 .then(result => {
     return result.json()})

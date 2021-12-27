@@ -1,33 +1,34 @@
-//next: delete backend console logs 
-
-
-console.log(window.location.href)
+//finding the id of the painting to fetch from the url: 
 let url = window.location.href
-//let numStringsToCut = process.env.NODE_ENV==='production'? 
-
-//find first number here, then slice from that number
-
-//uncomment for herokuapp
-
+//finds first number immediately after backslash
+//(since there may be numbers in the url)
 let idIndex = url.search(/\/[0-9]/)
-console.log(`the idIndex is ${idIndex}`)
 let numStringsToCut = idIndex +1
-
-
-//let numStringsToCut = 'https://painting-library.herokuapp.com/paintings/'.length
-// let numStringsToCut = 'http://localhost3000/paintings/'.length
 let id = url.slice(numStringsToCut,url.length-1)
-console.log(`the id is ${id}`)
 
-//make what we're displaying depend on whether cart has item
+
 let cartActionIcon = document.getElementById('cartActionIcon');
 let cartActionDescription = document.getElementById("cartActionDescription")
+
+
+// Sets session_id to be either what is in local storage
+//or maximum session_id in 'carts' database + 1. 
+
+//WARNING: newly generated id is only put in 'carts' database
+//when the first item is placed in a cart 
+//so two people may be assigned same session_id 
+//if one goes on the site before the other adds to cart
+
+//this is ~fine given current small number of users 
+//but should be fixed in final version
+
 
 
 if(!sessionStorage.getItem('session_id')){ 
 fetch('/api/cart/session')
 .then(result => result.json())
-.then(result => result.max +1)
+.then(result => {console.log(result) 
+    return result.max +1})
 .then(newId => {sessionStorage.setItem('session_id', newId)
 })
 }
