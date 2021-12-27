@@ -80,8 +80,8 @@ try{
 //2) makes paintings unavailable:
 //fetches all id's from the cart
 //sends them to put route that takes req.body = {id_1, ...,  id_n}
-// the put route sends id array to helper function 
-//which sets  available: false for each element of the array
+// the put route sends id's to helper function 
+//which sets available: false for each element of the array
 
 
 const makeUnavailable = async () => {
