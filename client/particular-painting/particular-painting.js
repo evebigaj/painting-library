@@ -14,7 +14,6 @@ let id = url.slice(numStringsToCut,url.length-1)
 
 
 let cartActionIcon = document.getElementById('cartActionIcon');
-console.log(`the cart action icon is ${cartActionIcon}`)
 let cartActionDescription = document.getElementById("cartActionDescription")
 
 //2) finding/setting session_id
@@ -95,7 +94,7 @@ const addToCart = async () => {
 
     
     //the case where we're adding to cart:
-    console.log(isInCart)
+   
    if(!isInCart){
        //add to cart:
        await fetch(`/api/cart/${id}?session=${session}`, {method: 'POST'})

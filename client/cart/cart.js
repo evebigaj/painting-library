@@ -32,7 +32,7 @@ fetch(`/api/cart?session=${sessionStorage.getItem('session_id')}`)
 
 const form = document.getElementById('form')
 
-//the form will 
+//onsubmit, the form will 
 //1) email form results to me 
 //2) email cart contents to me
 //3) make paintings unavailable
@@ -40,7 +40,7 @@ const form = document.getElementById('form')
 
 
 
-// gets cart and form contents and email them 
+//1) gets cart and form contents and emails them: 
 
 const sendEmail = async () => {
 try{
@@ -50,7 +50,6 @@ try{
       let emailText = 'Paintings:'
       result.forEach(painting => emailText = emailText + '\n' + painting.title
       )
-      console.log(`The email text is now ${emailText}`)
       return emailText})
     //at this point, the email text has all cart contents 
 
@@ -59,7 +58,6 @@ try{
     for (let pair of formData.entries()) {
       emailText = emailText +`\n` + pair[0]  + ': ' + pair[1]
     }
-    console.log(`and now the email text is ${emailText}`)
     //now email text is cart contents + form contents
     //about to post it to /submit
     //which will send an email
@@ -79,62 +77,56 @@ try{
   }
 }
 
-//make paintings unavailable:
-//fetch all id's from the cart
-//define a helper function that takes id array 
-//and for each element of the array, sets available: false 
-// connect it to a put route that takes req.body = {id1: id1, id2: id2}
+//2) makes paintings unavailable:
+//fetches all id's from the cart
+//sends them to put route that takes req.body = {id_1, ...,  id_n}
+// the put route sends id array to helper function 
+//which sets  available: false for each element of the array
+
 
 const makeUnavailable = async () => {
-console.log(`we're right before the second try clause`)
+
   try{
-    console.log(`starting to fetch cart contents`)
     //fetching from cart route
     fetch(`/api/cart?session=${sessionStorage.getItem('session_id')}`)
-    //this is the line which doesn't happen
-    .then(response => { console.log(`we got a response with the list of paintings`)
-    if(response.length === 0){return []}
-    else { return response.json()}})
-    .then(response => {let body = {}
-        console.log(`the length of the response is ${response.length}`)
-//have a case for empty cart
-if(response.length >0){
-response.forEach(painting => {console.log(`the paintings you ordered include painting number ${painting.id}`)
-    body[painting.id] = painting.id})
-}
-return body
-})
-.then(body => {
-    console.log('passing request to make paintings unavailable to backend')
-fetch(`/api/paintings`, {method: 'PUT',  headers: {
+    .then(response => { 
+      if(response.length === 0){return []}
+      else { return response.json()}
+    })
+    .then(response => {
+        let body = {}
+        //putting {id_1, ..., id_n} into body:
+        if(response.length >0){
+          response.forEach(painting => {body[painting.id] = painting.id})
+          }
+  return body
+  })
+  //sending 'put' request with body
+  .then(body => {
+    fetch(`/api/paintings`, {method: 'PUT',  headers: {
       'Content-Type': 'application/json'
       }, 
-      body: JSON.stringify(body)}
-)
-})
+      body: JSON.stringify(body)})
+  })
 }
 catch(e){
   console.log(`the error in the put request is ${e}`)
 }
 }
 
+//3) deletes all cart entries with current session_id
 const deleteCart = async () => {
-    return await fetch(`/api/cart?session=${sessionStorage.getItem('session_id')}`, {method: 'DELETE'})}
+    return await fetch(`/api/cart?session=${sessionStorage.getItem('session_id')}`, 
+    {method: 'DELETE'})
+  }
 
-
-//test:
-
-// fetch(`/api/cart?session=${sessionStorage.getItem('session_id')}`)
-// .then(() => {makeUnavailable()})
-
-console.log(`the session id is ${sessionStorage.getItem('session_id')}`)
 
 const submissionChain = async () => {
-    let chainComplete = false
     const result = await sendEmail()
     .then(() => makeUnavailable())
     .then(()=>deleteCart()
     )
+    //displays success page:
     .then(()=>{form.style.display = 'none';
     let formContainer = document.getElementById('form-container');
     formContainer.style.display = 'none'
@@ -156,38 +148,11 @@ const submissionChain = async () => {
 const submit = () => {
     
     submissionChain()
-   
-
-    // sendEmail()
-    // .then(()=> {makeUnavailable()})
-    // .catch(e=>{console.log(`chaining error ${e}`)})
-
-    // try{
-    //     //do I know that this way they happen sequentially? 
-    // await sendEmail();
-    
-    // await makeUnavailable()}
-    // catch(e){
-    //     console.log(`the error in the submit function was ${e}`)
-    // }
+   //we don't want form to submit,
+   //because we want all the async functions to happen unimpeded
     return false 
 
-// return false
 }
-
-
-
-
-//   if (form !== undefined &&  submitted === true) {
-//     // Validation succeeded, submit the form
-//     form.submit();
-//   }
-
-// // const submit = () => {
-// //     window.alert('submitted!')
-// //     console.log(`we're submitting!`)
-// //     return false
-// // }
 
 form.onsubmit = submit 
    
