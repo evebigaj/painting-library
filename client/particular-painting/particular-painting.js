@@ -9,9 +9,9 @@ let url = window.location.href
 
 //uncomment for herokuapp
 
-let idIndex = url.search(/[0-9]/)
+let idIndex = url.search(/\/[0-9]/)
 console.log(`the idIndex is ${idIndex}`)
-let numStringsToCut = idIndex
+let numStringsToCut = idIndex +1
 
 
 //let numStringsToCut = 'https://painting-library.herokuapp.com/paintings/'.length
