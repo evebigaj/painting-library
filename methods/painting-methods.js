@@ -19,33 +19,24 @@ const pool = new Pool(
    
 );
 
-// const getPaintings = async () => {
-
-// const paintings = await pool.query("select * from paintings")
-// .then(result => {
-//     //console.log(result.rows)
-// return result.rows})
-// .catch(error => {console.log(`oops: ${error}`)})
-// //console.log(paintings)
-// return paintings
-// }
 
 const getPaintingById = async (id, res) => {
     const painting = await pool.query(`select * from paintings where id = ${id}`)
-    .then(result => {console.table(result.rows)
+    .then(result => {
         return result.rows})
     .catch(error => {console.log(`oops: ${error}`)
     res.status(404)
-return error})
+    return error})
     return painting
 }
 
 const getPaintingsByKeys = async (object, res) => {
-   console.log(`getting paintings by keys`)
+
     let sentence = `select * from paintings where `
     for(key of Object.keys(object)){
         
         let sentenceToConcat = ''
+        //current implementation doesn't use this case:
         if(key == 'maxprice'){
             sentenceToConcat = `price <= ${object[key]} and `
         }
@@ -72,34 +63,16 @@ const getPaintingsByKeys = async (object, res) => {
 
     const result = await pool.query(sentence)
      .then(result => {
-        console.log(`the rows of the helper result are ${result.rows}`)
-        console.table(result.rows)
         return result.rows
     })
     .catch(error => {console.log(`oops: ${error}`)
-    res.status(404).send('Resource not found')
-return error})
+        res.status(404).send('Resource not found')
+        return error})
 
-return result 
+    return result 
     
 }
 
-
-
-// const getPaintingByKey = async (key, value) => {
-//     const result = await pool.query(`select * from paintings where ${key} = '${value}'`)
-//     .then(result => {
-//         console.table(result.rows)
-//         return result.rows
-//     })
-//     .catch(error => {console.log(`oops: ${error}`)
-// return error})
-
-
-// return result 
-// }
-
-//takes in [id1, id2, ..., idn] and sets available:false
 
 const convertToArray = object => {
     let array = []
@@ -128,8 +101,6 @@ return e})
 return result
 }
 
-//this is a promise because getPaintings is async
-//console.log(`the result is ${getPaintings()}`)
 
 module.exports = {makePaintingsUnavailable, getPaintingById, getPaintingsByKeys}
 
