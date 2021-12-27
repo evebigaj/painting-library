@@ -1,6 +1,5 @@
-//window.open('mailto:evebigaj@gmail.com')
 
-
+//display cart contents: 
 
 fetch(`/api/cart?session=${sessionStorage.getItem('session_id')}`)
 .then(result => {if(result.status === 204){
@@ -30,30 +29,18 @@ fetch(`/api/cart?session=${sessionStorage.getItem('session_id')}`)
    })}
 })
 
-    // let container = document.getElementById("container");
-    // result.forEach(painting => {
-    //     let image = document.createElement('img');
-    //     image.src = painting.url;
-    //     container.append(image)
-    // }
-    //     )})
-
 
 const form = document.getElementById('form')
 
-//this should
+//the form will 
 //1) email form results to me 
 //2) email cart contents to me
 //3) make paintings unavailable
-//4) clear their cart 
-//5) potentially: remove sesion id. 
+//4) clear cart 
 
 
 
-//fetch cart contents 
-//make a string of titles to concatenate to order 
-
-//1. get cart and form contents and email them 
+// gets cart and form contents and email them 
 
 const sendEmail = async () => {
 try{

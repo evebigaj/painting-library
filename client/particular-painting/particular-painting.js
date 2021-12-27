@@ -1,3 +1,9 @@
+//we will:
+//1) find id of painting to fetch
+//2) find or set session id
+//3) display painting and description
+//4) have logic for adding and removing to cart
+
 //1) finding the id of the painting to fetch from the url: 
 let url = window.location.href
 //finds first number immediately after backslash
@@ -8,30 +14,29 @@ let id = url.slice(numStringsToCut,url.length-1)
 
 
 let cartActionIcon = document.getElementById('cartActionIcon');
+console.log(`the cart action icon is ${cartActionIcon}`)
 let cartActionDescription = document.getElementById("cartActionDescription")
 
 //2) finding/setting session_id
 // Sets session_id to be either what is in local storage
 //or maximum session_id in 'carts' database + 1. 
 
-//WARNING: newly generated id is only put in 'carts' database
-//when the first item is placed in a cart 
-//so two people may be assigned same session_id 
-//if one goes on the site before the other adds to cart
+//WARNING: This doesn't get updated until page refresh
+//Most users navigate from home page, 
+//which will have set the session_id
+//but if you navigate to /painting/:id first,
+//currently the cart action is broken 
 
-//this is ~fine given current small number of users 
-//but should be fixed in final version
 
-const createStorageId = async () => {
-    result = await fetch('/api/cart/session')
+if(!sessionStorage.getItem('session_id')){
+  fetch('/api/cart/session')
     .then(result => result.json())
     .then(result => result.max +1)
-    .then(newId => {sessionStorage.setItem('session_id', newId)
-    })
-return result 
+    .then(newId => {sessionStorage.setItem('session_id', newId)})
 }
 
-const session = sessionStorage.getItem('session_id') || createStorageId()
+
+const session = sessionStorage.getItem('session_id') 
 
 //3) Fetch and display painting and description
 
@@ -90,6 +95,7 @@ const addToCart = async () => {
 
     
     //the case where we're adding to cart:
+    console.log(isInCart)
    if(!isInCart){
        //add to cart:
        await fetch(`/api/cart/${id}?session=${session}`, {method: 'POST'})
