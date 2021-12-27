@@ -1,30 +1,24 @@
+require('dotenv').config()
+const PORT = process.env.PORT || 3000
 const express = require('express')
 const app = express();
+
 const {paintings} = require('./routes/paintings')
-const {register} = require('./routes/register')
 const {cart} = require('./routes/cart')
-const path = require('path')
-//const cors = require('cors')
+const {submit} = require('./routes/submit')
 
-//app.use(cors())
+const path = require('path');
 
-//app.use(express.static(__dirname + '/public'))
-
-app.use(express.static('public'))
-
-app.use(express.urlencoded({ extended: true }))
-// // parse json
 app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
+app.use(express.static(path.join(__dirname, 'client/public')))
 
-app.use('/paintings', express.static('paintings'))
-app.use('/cart', express.static('cart'))
-app.use('/paintings/:id', express.static('particular-painting'))
+app.use('/paintings', express.static('client/paintings'))
+app.use('/cart', express.static('client/cart'))
+app.use('/paintings/:id', express.static('client/particular-painting'))
+
 app.use('/api/paintings', paintings)
 app.use('/api/cart', cart)
-app.use('/register', register)
+app.use('/submit', submit)
 
-// app.get('/', (res, req) => {
-//     res.sendFile(path.resolve(__dirname, './public/index.html'))
-// })
-
-app.listen(3000, () => console.log('listening on port 3000'))
+app.listen(PORT, () => console.log(`listening on port ${PORT}`))

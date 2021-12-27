@@ -1,52 +1,68 @@
 const {Router} = require('express')
 const cart = new Router()
-const {generateId, addToCart, getCart, getById, deleteFromCart} = require('../database/cart-methods')
+const {getMaxIdArray, addToCart, getCart, getById, deleteFromCart, deleteAllFromCart} = require('../methods/cart-methods')
 
-// let's do a get cart/session
-//which will return the new id
 
+
+//this fetches the maximum id of all sessions we've had so far:
 cart.get('/session', (req, res)=>{
-generateId()
-.then(result => {console.log( `on the backend, the id is ${result}`)
+    getMaxIdArray(res)
+    .then(result => {
     res.send(result[0])})
+    .catch(e =>{console.log(e);
+        res.status(404).send(e)})
+
 })
 
-cart.get('/:id', (req, res)=>{
-    console.log('getting by id')
-    getById(req.query.session, req.params.id)
+cart.get('/', (req, res) => {
+    getCart(req.query.session, res)
     .then(result => {
-        console.log(`we got a result and it's ${result}`)
-        console.log(`the result length is ${result.length}`)
-        if(result){
+        if(result.length === 0){
+            res.status(204).end()}
+        else {
+            res.send(result)}})
+    .catch(e=>res.status(404).send(e)) 
+})
+
+//used in removing particular items from cart, 
+// to check if they're there:
+cart.get('/:id', (req, res)=>{
+    
+    getById(req.query.session, req.params.id, res)
+    .then(result => {
+        
             if(result.length === 0){
                 
                 res.status(204).end()
             }
-        res.send(result)}
-        else{res.status(404).end()}
-        console.log(`we got past the res.send`)
+       else{ res.send(result)}
+    }         
         
-    })
+    )
 
 
 })
+
+//used when adding to cart:
 cart.post('/:id', (req, res)=> {
-    console.log(`the request is ${req}`)
-addToCart(req.query.session, req.params.id)
-.then(result =>{console.log('reached end of post request')
+addToCart(req.query.session, req.params.id, res)
+.then(result =>{
  res.send(result)})
 })
 
-cart.get('/', (req, res) => {
-    getCart(req.query.session)
-    .then(result => res.send(result)) 
-})
 
+//used when removing from cart:
 cart.delete('/:id', (req, res) =>{
-    deleteFromCart(req.query.session, req.params.id)
+    deleteFromCart(req.query.session, req.params.id, res)
     .then(result => res.send(result))
 })
-//next: use this in particular-painting.js
+
+//used on submit:
+cart.delete('/', (req, res)=>{
+    deleteAllFromCart(req.query.session, res)
+    .then(result => res.send(result))
+})
+
 
 
 module.exports = {cart}

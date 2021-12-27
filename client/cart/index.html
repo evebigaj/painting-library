@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    
+    <link rel="stylesheet" href="cart.css"></link>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <main>
+    <article id="container">
+        <section id="cart-contents">
+            <h1>Basket</h1>
+        </section>
+    </article>
+
+    <article id="form-container">
+        <form id="form">
+            <div id="form-line">
+                <label for="name">Name: </label>
+                <input type="text" id="name" name="name" required> <br> <br>
+            </div>
+            <div id="form-line">
+                <label for="address1">Address line 1:  </label>
+                <input type="text" id="address1" name="address1" required> <br> <br>
+            </div>
+            <div id="form-line">
+                <label for="address2">Address line 2: </label>
+                <input type="text" id="address2" name="address2" required> <br> <br>
+            </div>
+
+            <div id="form-line">
+                <label for="email">Email address: </label>
+                <input type="text" id="email" name="email" required> <br> <br>
+            </div>
+
+            <div id="form-line">
+                <label for="comment">Special requests: </label>
+            <textarea name="comment" id="comment" cols="30" rows="10">What color would you like me to paint the canvas edges? (Leave blank to give me artistic license.)</textarea> <br> <br>
+            </div>
+            <input type="submit" value="Checkout" id="submit">
+        </form>
+    </article>
+
+    </main>
+
+    <script src="cart.js"></script>
+</body>
+
+</html>

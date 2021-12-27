@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="styles.css"></link>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <header>
+        <section class="left" id="title">
+            <h1 onclick="location.href = '/paintings'" id="page-title">Eve's Painting Library</h1>
+        </section>
+    
+        <section id="basket" class="right">
+            <img src="/photos/basket.png" alt="basket" onclick="location.href = '/cart'" class="basket-image">
+            <h1 id="basket-label">basket</h1>
+        </section>
+    </header>
+    
+    <article id="info">
+        <section id="image-box"></section>
+        <section id="card">
+             <section id="description"></section>
+            <section id="addToBasket">
+             <img id="cartActionIcon" onclick="addToCart()" src="/photos/plus.png">
+             <p id="cartActionDescription">Add to basket</p>
+            
+            </section>
+            </section>
+    </article>
+    
+<script src='particular-painting.js'></script>
+</body>
+
+</html>
