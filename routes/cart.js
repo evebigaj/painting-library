@@ -1,7 +1,7 @@
 const {Router} = require('express')
 const res = require('express/lib/response')
 const cart = new Router()
-const {generateIdArray, addToCart, getCart, getById, deleteFromCart, deleteAllFromCart} = require('../database/cart-methods')
+const {generateIdArray, addToCart, getCart, getById, deleteFromCart, deleteAllFromCart} = require('../methods/cart-methods')
 
 // let's do a get cart/session
 //which will return the new id

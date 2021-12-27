@@ -1,6 +1,6 @@
 const express = require('express');
 const paintings = new express.Router()
-const { getPaintingById,  getPaintingsByKeys, makePaintingsUnavailable} = require('../database/painting-methods')
+const { getPaintingById,  getPaintingsByKeys, makePaintingsUnavailable} = require('../methods/painting-methods')
 
 paintings.use(express.static('styles.css'))
 

@@ -1,5 +1,5 @@
 const {Router} = require('express')
-const { sendEmail } = require('../database/submit-methods')
+const { sendEmail } = require('../methods/submit-methods')
 const submit = new Router()
 
 
