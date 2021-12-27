@@ -24,16 +24,18 @@ let cartActionDescription = document.getElementById("cartActionDescription")
 
 
 
-if(!sessionStorage.getItem('session_id')){ 
-fetch('/api/cart/session')
+const createStorageId = async () => {
+    result = await fetch('/api/cart/session')
 .then(result => result.json())
 .then(result => {console.log(result) 
     return result.max +1})
 .then(newId => {sessionStorage.setItem('session_id', newId)
 })
+return result 
 }
 
-const session = sessionStorage.getItem('session_id')
+const session = sessionStorage.getItem('session_id') || createStorageId()
+console.log(`the session id is ${session}`)
 
 fetch(`/api/cart/${id}?session=${session}`)
 .then(result => {
@@ -54,9 +56,7 @@ return isInCart
 isInCart? 'Remove from basket': 'Add to basket'})
 
 
-
-
-console.log(`fetching the paintings`)
+console.log(`fetching the painting`)
 fetch(`/api/paintings/${id}`)
 .then(result => result.json())
 .then(result => {
@@ -77,17 +77,18 @@ fetch(`/api/paintings/${id}`)
     price.innerHTML = `$${painting.price}`
     description.append(price)
 })
-//now make this depend on whether the item is in the cart
+
 
 
 
 const addToCart = async () => {
-
+//console.log(`/api/cart/${id}?session=${session}`)
 let isInCart = await fetch(`/api/cart/${id}?session=${session}`)
 .then(result => {
+    console.log(result.status)
 
     if(result.status === 200){
-    
+
     return true
 }
 else 
