@@ -48,6 +48,7 @@ fetch(`/api/paintings/${id}`)
    
     let image = document.createElement('img')
     image.src = painting.url;
+    image.id = "particular-image"
     imageBox.append(image)
     let heading = document.createElement('h1')
     heading.id="particular-heading"
