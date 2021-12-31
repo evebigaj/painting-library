@@ -213,4 +213,50 @@ particular-price {
   #basket-image {
     width: auto;
   }
+
+  /* for painting: */
+  .painting-image {
+    height: 30vh;
+    width: auto;
+  }
+
+  /* for particular-painting: */
+  #info {
+    display: block;
+    margin-top: 3vh;
+  }
+  /* img {
+    width: 90%;
+    height: auto;
+  } */
+
+  #card {
+    margin: 0;
+  }
+  particular-title {
+    margin: 0.5vh;
+    font-size: 4vh;
+  }
+  particular-price,
+  particular-dimensions {
+    margin: 0.5vh;
+    font-size: 3vh;
+  }
+  #cartActionIcon {
+    height: 5vh;
+    width: auto;
+    padding-top: 3vh;
+    padding-bottom: 3vh;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  #cartActionDescription {
+    font-size: 3vh;
+    line-height: 3vh;
+  }
+
+  #addToBasket {
+    margin-top: 0;
+    margin-left: 10vw;
+  }
 }

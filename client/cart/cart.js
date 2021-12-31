@@ -24,7 +24,7 @@ fetch(`/api/cart?session=${sessionStorage.getItem('session_id')}`)
     heading.innerHTML = painting.title;
     imageBox.append(heading);
     let dimensions = document.createElement('p');
-    dimensions.innerHTML = `, ${painting.width}"x${painting.height}"`
+    dimensions.innerHTML = `${painting.width}"x${painting.height}"`
     imageBox.append(dimensions)
    })}
 })
