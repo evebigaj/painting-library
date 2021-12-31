@@ -1,67 +1,31 @@
-/* smaller gaps between columns vertically
-titles of columns 
-center within columns
-higher columns */
-
 html,
 body {
   width: 100%;
   height: 100%;
-  font-family: Arial, sans-serif;
-  font-size: 3.5vh;
 }
 
 body {
-  overflow-x: hidden;
+  font-family: Arial, sans-serif;
+  font-size: 3.5vh;
   color: rgb(93, 91, 110);
-}
-
-/* body{background-image:linear-gradient(to right, rgb(219, 171, 93), rgb(243, 227, 135))} */
-
-#main {
-  /* margin-top:3vh; */
-
-  margin-top: 15vh;
-
-  text-align: center;
-  display: grid;
-  row-gap: 5vh;
-  grid-template-columns: repeat(3, 30vw);
-  grid-template-rows: repeat(2, 55vh);
-  padding-left: 5vw;
-  justify-items: center;
-
-  /* background-image: linear-gradient(to bottom, white, rgb(218, 161, 88)) */
+  overflow-x: hidden;
 }
 
 header {
   width: 100%;
   display: flex;
-
-  /* background-color: #f5e2c4; */
   height: 15vh;
-
-  /* background-image: linear-gradient(to bottom, white, rgb(226, 149, 105))
-rgb(226, 199, 77) */
 }
 
-.left {
-  margin-left: 2vw;
-  justify-self: start;
-  width: 100%;
-  display: flex;
-}
-
-.container {
-  position: relative;
+main {
+  display: grid;
+  grid-template-columns: repeat(3, 30vw);
+  grid-template-rows: repeat(2, 55vh);
+  row-gap: 5vh;
+  padding-left: 5vw;
+  margin-top: 15vh;
   text-align: center;
-}
-
-#centered {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  justify-items: center;
 }
 
 img {
@@ -70,25 +34,34 @@ img {
   cursor: pointer;
 }
 
+/* make the headers # */
+
+#left-header {
+  display: flex;
+  justify-self: start;
+  margin-left: 2vw;
+  width: 100%;
+  font-size: 4vh;
+  cursor: pointer;
+}
+
 #left-container {
   grid-column: 1;
-  background-color: white;
 }
 
 #center-container {
   grid-column: 2;
-  background-color: white;
 }
 
-right-container {
+#right-container {
   grid-column: 3;
 }
 
-.center-row {
+.first-row {
   grid-row: 1;
 }
 
-.right-row {
+.second-row {
   grid-row: 2;
 }
 
@@ -130,7 +103,7 @@ h1 {
   margin-left: 0.5vh;
 }
 
-.right {
+.right-header {
   justify-self: end;
   justify-content: right;
   width: 100%;
@@ -178,7 +151,7 @@ a {
 
   header {
     margin: 0;
-    padding:0;
+    padding: 0;
   }
 }
 
