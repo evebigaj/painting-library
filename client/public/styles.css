@@ -28,15 +28,24 @@ main {
   justify-items: center;
 }
 
+h1 {
+  margin: 3vh;
+  cursor: pointer;
+}
+
 img {
   height: 80%;
   width: auto;
   cursor: pointer;
 }
 
-/* make the headers # */
+a {
+  color: rgb(93, 91, 110);
+  text-decoration: none;
+}
 
-#left-header {
+
+.left-header {
   display: flex;
   justify-self: start;
   margin-left: 2vw;
@@ -45,16 +54,13 @@ img {
   cursor: pointer;
 }
 
-#left-container {
-  grid-column: 1;
-}
-
-#center-container {
-  grid-column: 2;
-}
-
-#right-container {
-  grid-column: 3;
+.right-header {
+  justify-self: end;
+  justify-content: right;
+  width: 100%;
+  text-align: right;
+  padding-right: 3vw;
+  display: flex;
 }
 
 .first-row {
@@ -65,9 +71,22 @@ img {
   grid-row: 2;
 }
 
-h1 {
-  margin: 3vh;
-  cursor: pointer;
+#basket-container {
+  height: 4vh;
+  margin-top: 2vh;
+}
+
+#basket-image {
+  height: 80%;
+  padding: 0;
+  margin: 0;
+}
+
+#basket-label {
+  justify-self: end;
+  font-size: 3vh;
+  margin: 0;
+  margin-left: 0.5vh;
 }
 
 #small {
@@ -85,76 +104,34 @@ h1 {
   height: auto;
 }
 
-#basket {
-  height: 4vh;
-  margin-top: 2vh;
-}
-
-.basket-image {
-  height: 80%;
-  padding: 0;
-  margin: 0;
-}
-
-#basket-label {
-  justify-self: end;
-  font-size: 3vh;
-  margin: 0;
-  margin-left: 0.5vh;
-}
-
-.right-header {
-  justify-self: end;
-  justify-content: right;
-  width: 100%;
-  text-align: right;
-  padding-right: 3vw;
-  display: flex;
-}
-
-#title {
-  font-size: 4vh;
-  cursor: pointer;
-}
-
-a {
-  color: rgb(93, 91, 110);
-  text-decoration: none;
-}
 
 @media only screen and (max-width: 600px) {
   body {
     margin: 0;
   }
 
-  h1 {
-    font-size: 3.5vh;
+  header {
+    margin: 0;
+    padding: 0;
   }
 
-  #title {
-    font-size: 4vh;
-  }
-
-  #main {
+  main {
     display: block;
     padding-left: 0;
     margin-top: 1vh;
+  }
+
+  h1 {
+    font-size: 3.5vh;
   }
 
   img {
     width: 60vw;
   }
 
-  .basket-image {
+  #basket-image {
     width: auto;
   }
 
-  header {
-    margin: 0;
-    padding: 0;
-  }
+  
 }
-
-/* body{background-color: pink;} */
-
-/* #top{background-color: pink;} */
