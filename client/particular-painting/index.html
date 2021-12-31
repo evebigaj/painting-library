@@ -2,22 +2,23 @@
 <html>
 
 <head>
-    <link rel="stylesheet" href="styles.css"></link>
+    <link rel="stylesheet" href="/styles.css"></link>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
 <body>
     <header>
-        <section class="left" id="title">
-            <h1 onclick="location.href = '/paintings'" id="page-title">Eve's Painting Library</h1>
+        <section class="left-header">
+            <h1 onclick="location.href = '/paintings'">Eve's Painting Library</h1>
         </section>
     
-        <section id="basket" class="right">
-            <img src="/photos/basket.png" alt="basket" onclick="location.href = '/cart'" class="basket-image">
+        <section id="basket-container" class="right-header">
+            <img src="/photos/basket.png" alt="basket" onclick="location.href = '/cart'" id="basket-image">
             <h1 id="basket-label">basket</h1>
         </section>
     </header>
-    
+
+    <main>
     <article id="info">
         <section id="image-box"></section>
         <section id="card">
@@ -29,8 +30,11 @@
             </section>
             </section>
     </article>
+
+</main>
     
 <script src='particular-painting.js'></script>
+
 </body>
 
 </html>
