@@ -5,15 +5,14 @@ const devConfig = {
         port: process.env.PG_PORT,
         user: process.env.PG_USER,
         database: 'painting_store',
-        password: process.env.PG_PASSWORD,
-        max: 20
+        password: process.env.PG_PASSWORD
 }
 
 const proConfig = {
     connectionString: process.env.DATABASE_URL,
     ssl: {rejectUnauthorized:false}
-    // sslmode: 'require'
 }
+
 const pool = new Pool(
     process.env.NODE_ENV==='production'? proConfig: devConfig
    
@@ -58,13 +57,12 @@ const getPaintingsByKeys = async (object, res) => {
 
         sentence = sentence.concat(sentenceToConcat)
     }
+        //removes final ' and ':
     sentence = sentence.slice(0,-5)
     
 
     const result = await pool.query(sentence)
-     .then(result => {
-        return result.rows
-    })
+     .then(result => result.rows)
     .catch(error => {console.log(`oops: ${error}`)
         res.status(404).send('Resource not found')
         return error})
@@ -73,7 +71,7 @@ const getPaintingsByKeys = async (object, res) => {
     
 }
 
-
+//used in makePaintingsUnavailable:
 const convertToArray = object => {
     let array = []
 for(let key of Object.keys(object)){
@@ -86,12 +84,12 @@ return array
 const makePaintingsUnavailable = async (object, res) => {
 
     let array = convertToArray(object)
-    console.log(`The array is ${array}`)
     let condition = ''
     array.forEach(id => {
        condition = condition.concat(`id=${id} or `)
     })
     let sentence = `update paintings set available=false where `.concat(condition)
+    //removes final ' or ':
     sentence = sentence.slice(0,-4)
     console.log(sentence)
 const result = pool.query(sentence)
