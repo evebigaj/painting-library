@@ -15,8 +15,8 @@ var transporter = nodemailer.createTransport({
 });
 
 var mailOptions = {
-  from: 'beverek@hotmail.com',
-  to: 'eve.bigaj@gmail.com',
+  from: process.env.EMAIL,
+  to: process.env.EMAIL,
   subject: 'New painting order',
   text: data
 };
