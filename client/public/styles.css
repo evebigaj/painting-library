@@ -118,7 +118,73 @@ a {
   margin-top: 3vh;
 }
 
+/* for particular-painting: */
 
+#info {
+  display: flex;
+  width: 75vw;
+  margin: 0 auto;
+  text-align: center;
+  margin: 3vh;
+}
+#card {
+  height: 50vh;
+  padding-top: 3vh;
+  padding-bottom: 3vh;
+  padding-left: 1vh;
+  padding-right: 1vh;
+
+  border-radius: 1vh;
+  background-color: white;
+  /* background-color: #e1f5c480; */
+  /* background-color: #ede57480; */
+  margin-top: 15vh;
+  margin-bottom: 15vh;
+  margin-left: 5vw;
+}
+
+#cartActionIcon {
+  height: 8vh;
+
+  grid-column: 1;
+  margin: 0 auto;
+  padding-top: 5vh;
+  padding-bottom: 5vh;
+  /* margin-left: 0; */
+  cursor: pointer;
+}
+
+#cartActionDescription {
+  grid-column: 2;
+  font-size: 4vh;
+  margin-left: 1vw;
+  padding-top: 3vh;
+  padding-bottom: 3vh;
+  /* margin: auto; */
+}
+
+#addToBasket {
+  display: grid;
+  grid-template-columns: 20% 80%;
+  text-align: left;
+}
+
+#info {
+  margin: 0 auto;
+  margin-top: 5vh;
+}
+
+particular-heading {
+  font-size: 5vh;
+  font-family: Arial, sans-serif;
+  color: #3d3d53;
+}
+particular-dimensions,
+particular-price {
+  font-size: 4vh;
+  color: #3d3d53;
+  font-weight: 700;
+}
 
 @media only screen and (max-width: 600px) {
   body {

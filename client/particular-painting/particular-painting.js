@@ -50,13 +50,16 @@ fetch(`/api/paintings/${id}`)
     image.src = painting.url;
     imageBox.append(image)
     let heading = document.createElement('h1')
+    heading.id="particular-heading"
     heading.innerHTML = painting.title;
     description.append(heading);
     let dimensions = document.createElement('p');
     dimensions.innerHTML = `${painting.width}"x${painting.height}"`
+    dimensions.id="particular-dimensions"
     description.append(dimensions)
     let price = document.createElement('p');
     price.innerHTML = `$${painting.price}`
+    price.id ="particular-price"
     description.append(price)
 })
 
